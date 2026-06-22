@@ -6,6 +6,7 @@ from data import get_defenses_score
 from models.cobblemon_form import CobblemonSpecies
 from models.cobbleverse_trainer import CobbleverseAI, CobbleverseAIData, CobbleverseTrainer, TeamMember
 from pokemon_database import PokemonDatabase
+from special_species import SpecialSpecies
 from team_coach import TeamCoach
 from consts import *
 from trainers import get_type_lock
@@ -190,6 +191,8 @@ def choose_species_for_trainer(database: PokemonDatabase, coach: TeamCoach, trai
             # TODO: filter by team weaknesses
             
             chosen_pokemon = random.choice(tag_matches if tag_matches and len(tag_matches) > 0 else matches)
+            
+            SpecialSpecies.check_and_apply(chosen_pokemon)
 
             cobblemon_raw_species: dict = database.find_all_records(collection_name=database.cobblemon_collection, query={"name": chosen_pokemon["species"]},)[0]
             cobblemon_species = CobblemonSpecies.model_validate(cobblemon_raw_species)
@@ -254,7 +257,7 @@ def choose_species_for_trainer(database: PokemonDatabase, coach: TeamCoach, trai
                     
 
 
-            # TODO: hardcode values
+            # TODO: hardcoded values
             new_member = TeamMember(
                 species=chosen_pokemon["species"],
                 ability=chosen_pokemon["ability"],
@@ -265,7 +268,7 @@ def choose_species_for_trainer(database: PokemonDatabase, coach: TeamCoach, trai
                 moveset=moves_list,
                 gimmicks=None,
                 nature=nature,
-
+                aspects=chosen_pokemon.get("aspects",None),
                 ivs={
                     "hp": 31,
                     "atk": 31,

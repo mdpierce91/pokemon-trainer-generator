@@ -48,6 +48,7 @@ class TeamMember(BaseModel):
     evs: PokemonStats | None = None
     heldItem: str | list |  None = None
     gimmicks: PokemonGimicks | None = None
+    aspects: list[str] | None = None
 
 
 class CobbleverseTrainer(BaseModel):
