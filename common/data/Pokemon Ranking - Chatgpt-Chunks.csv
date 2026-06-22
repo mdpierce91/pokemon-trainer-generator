@@ -1,0 +1,1264 @@
+Torkoal,Base,_S,Special Attacker;Sun weather setter;Sun weather synergy;Needs Speed Control
+Kyogre,Base,__S+,Special Attacker;Rain weather setter;Rain weather synergy
+Groudon,Base,__S+,Physical Attacker;Sun weather setter;Sun weather synergy
+Groudon,Primal,__S+,Physical Attacker;Sun weather setter;Sun weather synergy
+Kyogre,Primal,__S+,Special Attacker;Rain weather setter;Rain weather synergy
+Rayquaza,Base,__S+,Physical Attacker;Special Attacker
+Rayquaza,Mega,__S+,Physical Attacker;Special Attacker
+Dialga,Origin,__S+,Special Attacker;Defensive
+Palkia,Origin,__S+,Special Attacker
+Cresselia,Base,_S,Support;Defensive;Has Speed Control
+Whimsicott,Base,_S,Support;Has Speed Control
+Gothitelle,Base,_A,Support;Defensive;Needs Speed Control
+Amoonguss,Base,__S+,Support;Defensive;Needs Speed Control
+Hydreigon,Base,_S,Special Attacker
+Volcarona,Base,__S+,Special Attacker;Stat Boosting Setup
+Thundurus,Incarnate Forme,_S,Support;Special Attacker;Has Speed Control
+Landorus,Therian Forme,_S,Physical Attacker
+Kyurem,White,_A,Special Attacker
+Kyurem,Black,_A,Physical Attacker
+Greninja,Ash Form,__S+,Special Attacker;Has Speed Control
+Talonflame,Base,__S+,Physical Attacker;Support;Has Speed Control
+Aegislash,Shield Forme,_S,Physical Attacker;Special Attacker;Defensive
+Sylveon,Base,_S,Special Attacker;Support
+Xerneas,Base,__S+,Special Attacker;Stat Boosting Setup
+Yveltal,Base,__S+,Special Attacker
+Zygarde,50% Forme,_A,Physical Attacker
+Zygarde,Complete Forme,_S,Physical Attacker;Defensive
+Incineroar,Base,__S+,Support;Physical Attacker;Has Speed Control
+Oranguru,Base,_A,Support;Has Speed Control
+Tapu Koko,Base,__S+,Support;Special Attacker;Has Speed Control
+Tapu Lele,Base,__S+,Special Attacker
+Tapu Fini,Base,__S+,Support;Defensive
+Kartana,Base,__S+,Physical Attacker
+Necrozma,Dusk Mane,__S+,Physical Attacker;Defensive
+Necrozma,Ultra,__S+,Physical Attacker;Special Attacker;Has Speed Control
+Magearna,Base,__S+,Special Attacker;Support
+Rillaboom,Base,__S+,Support;Physical Attacker
+Hatterene,Base,__S+,Special Attacker;Has Speed Control
+Hatterene,Gigantamax,__S+,Special Attacker;Needs Speed Control
+Grimmsnarl,Base,__S+,Support
+Grimmsnarl,Gigantamax,__S+,Support;Physical Attacker
+Indeedee,Male,__S+,Support;Special Attacker
+Indeedee,Female,__S+,Support;Defensive
+Dracovish,Base,__S+,Physical Attacker
+Dragapult,Base,__S+,Physical Attacker;Special Attacker;Has Speed Control
+Zacian,Hero of Many Battles,__S+,Physical Attacker
+Zacian,Crowned Sword,__S+,Physical Attacker
+Eternatus,Base,__S+,Special Attacker
+Eternatus,Eternamax,__S+,Special Attacker;Defensive
+Urshifu,Single Strike Style,__S+,Physical Attacker
+Urshifu,Rapid Strike Style,__S+,Physical Attacker;Rain weather synergy
+Regieleki,Base,__S+,Support;Special Attacker;Has Speed Control
+Spectrier,Base,__S+,Special Attacker
+Calyrex,Ice Rider,__S+,Physical Attacker;Has Speed Control
+Calyrex,Shadow Rider,__S+,Special Attacker
+Ursaluna,Base,__S+,Physical Attacker;Needs Speed Control
+Ursaluna,Bloodmoon Form,__S+,Special Attacker;Needs Speed Control
+Sneasler,Base,__S+,Physical Attacker
+Enamorus,Therian Forme,__S+,Special Attacker;Has Speed Control
+Palafin,Hero Form,__S+,Physical Attacker
+Annihilape,Base,__S+,Physical Attacker;Stat Boosting Setup
+Kingambit,Base,__S+,Physical Attacker;Stat Boosting Setup
+Flutter Mane,Base,__S+,Special Attacker;Has Speed Control
+Iron Bundle,Base,__S+,Special Attacker;Has Speed Control
+Iron Hands,Base,__S+,Physical Attacker;Support
+Chien-Pao,Base,__S+,Physical Attacker;Has Speed Control
+Ting-Lu,Base,__S+,Defensive;Support
+Chi-Yu,Base,__S+,Special Attacker
+Roaring Moon,Base,__S+,Physical Attacker;Has Speed Control
+Iron Valiant,Base,__S+,Physical Attacker;Special Attacker;Has Speed Control
+Koraidon,Base,__S+,Physical Attacker;Sun weather setter;Sun weather synergy
+Miraidon,Base,__S+,Special Attacker;Electric Terrain setter
+Ogerpon,Teal Mask,__S+,Physical Attacker;Support
+Ogerpon,Wellspring Mask,__S+,Physical Attacker;Rain weather synergy
+Ogerpon,Hearthflame Mask,__S+,Physical Attacker;Sun weather synergy
+Ogerpon,Cornerstone Mask,__S+,Physical Attacker;Defensive
+Terapagos,Base,__S+,Support;Defensive
+Terapagos,Terastal Form,__S+,Special Attacker;Defensive
+Greninja,Mega,__S+,Special Attacker;Physical Attacker;Has Speed Control
+Dragonite,Mega,__S+,Physical Attacker;Defensive;Stat Boosting Setup
+Zygarde,Mega,__S+,Physical Attacker;Defensive;Has Speed Control
+Lucario,Mega Z,__S+,Physical Attacker;Support;Has Speed Control
+Zeraora,Mega,__S+,Physical Attacker;Has Speed Control
+Magearna,Mega,__S+,Special Attacker;Support
+Dragonite,Base,_S,Physical Attacker;Has Speed Control;Stat Boosting Setup
+Murkrow,Base,_S,Support;Has Speed Control
+Porygon2,Base,_S,Support;Defensive;Needs Speed Control
+Salamence,Base,_S,Physical Attacker;Has Speed Control
+Metagross,Mega,_S,Physical Attacker;Defensive
+Garchomp,Base,_S,Physical Attacker
+Togekiss,Base,_S,Support;Special Attacker;Has Speed Control
+Rotom,Wash,_S,Support;Special Attacker
+Dialga,Base,_S,Special Attacker;Defensive
+Palkia,Base,_S,Special Attacker
+Heatran,Base,_S,Special Attacker;Defensive;Sun weather synergy
+Arceus,Normal,_S,Physical Attacker;Special Attacker;Support
+Excadrill,Base,_S,Physical Attacker;Sand weather synergy
+Conkeldurr,Base,_S,Physical Attacker;Needs Speed Control
+Darmanitan,Galarian,_S,Physical Attacker
+Scrafty,Base,_S,Physical Attacker;Support;Needs Speed Control
+Chandelure,Base,_S,Special Attacker;Needs Speed Control
+Mienshao,Base,_S,Physical Attacker;Support;Has Speed Control
+Bisharp,Base,_S,Physical Attacker
+Reshiram,Base,_S,Special Attacker;Sun weather synergy
+Zekrom,Base,_S,Physical Attacker
+Greninja,Base,_S,Special Attacker;Physical Attacker;Has Speed Control
+Klefki,Base,_S,Support;Has Speed Control
+Diancie,Mega,_S,Special Attacker
+Hoopa,Unbound,_S,Physical Attacker;Special Attacker
+Primarina,Base,_S,Special Attacker;Needs Speed Control
+Ribombee,Base,_S,Support;Has Speed Control
+Mudsdale,Base,_S,Physical Attacker;Defensive;Needs Speed Control
+Comfey,Base,_S,Support
+Mimikyu,Base,_S,Physical Attacker;Support
+Kommo-o,Base,_S,Physical Attacker;Special Attacker;Stat Boosting Setup
+Solgaleo,Base,_S,Physical Attacker
+Lunala,Base,_S,Special Attacker
+Pheromosa,Base,_S,Physical Attacker;Special Attacker;Has Speed Control
+Celesteela,Base,_S,Defensive;Support
+Necrozma,Dawn Wings,_S,Special Attacker
+Marshadow,Base,_S,Physical Attacker;Has Speed Control
+Naganadel,Base,_S,Special Attacker;Has Speed Control
+Stakataka,Base,_S,Physical Attacker;Defensive;Needs Speed Control
+Blacephalon,Base,_S,Special Attacker;Has Speed Control
+Zeraora,Base,_S,Physical Attacker;Support;Has Speed Control
+Melmetal,Base,_S,Physical Attacker;Needs Speed Control
+Cinderace,Base,_S,Physical Attacker;Has Speed Control
+Cinderace,Gigantamax,_S,Physical Attacker;Has Speed Control
+Coalossal,Gigantamax,_S,Special Attacker;Defensive
+Barraskewda,Base,_S,Physical Attacker;Rain weather synergy;Has Speed Control
+Glastrier,Base,_S,Physical Attacker;Needs Speed Control
+Enamorus,Incarnate Forme,_S,Special Attacker
+Meowscarada,Base,_S,Physical Attacker;Has Speed Control
+Skeledirge,Base,_S,Special Attacker;Stat Boosting Setup
+Espathra,Base,_S,Special Attacker;Stat Boosting Setup;Has Speed Control
+Tinkaton,Base,_S,Support;Physical Attacker
+Glimmora,Base,_S,Special Attacker;Support
+Dondozo,Base,_S,Physical Attacker;Defensive
+Clodsire,Base,_S,Defensive;Support
+Great Tusk,Base,_S,Physical Attacker;Defensive
+Scream Tail,Base,_S,Support;Has Speed Control
+Iron Moth,Base,_S,Special Attacker;Stat Boosting Setup
+Ting-Lu,Base,_S,Defensive;Support
+Pecharunt,Base,_S,Support;Defensive;Has Speed Control
+Meganium,Mega,_S,Support;Sun weather synergy;Defensive
+Excadrill,Mega,_S,Physical Attacker;Sand weather synergy
+Chandelure,Mega,_S,Special Attacker;Stat Boosting Setup
+Floette,Eternal Mega Form,_S,Support;Special Attacker
+Starmie,Mega,_S,Special Attacker;Has Speed Control
+Darkrai,Mega,_S,Special Attacker;Has Speed Control
+Charizard,Mega Y,A,Special Attacker;Sun weather setter;Sun weather synergy
+Kangaskhan,Mega,A,Physical Attacker
+Zapdos,Base,A,Special Attacker;Has Speed Control
+Zapdos,Galarian,A,Physical Attacker;Has Speed Control
+Scizor,Base,A,Physical Attacker
+Hitmontop,Base,A,Support;Physical Attacker
+Suicune,Base,A,Support;Defensive;Has Speed Control
+Blaziken,Mega,A,Physical Attacker;Stat Boosting Setup
+Swampert,Mega,A,Physical Attacker;Rain weather synergy
+Ludicolo,Base,A,Support;Special Attacker;Rain weather synergy
+Sableye,Base,A,Support
+Dusclops,Base,A,Support;Defensive;Needs Speed Control
+Latios,Mega,A,Special Attacker;Has Speed Control
+Jirachi,Base,A,Support;Has Speed Control
+Cherrim,Sunshine Form,A,Support;Sun weather synergy
+Gastrodon,Base,A,Defensive;Support
+Bronzong,Base,A,Support;Defensive;Needs Speed Control
+Lucario,Mega,A,Physical Attacker
+Mamoswine,Base,A,Physical Attacker;Snow weather synergy
+Victini,Base,A,Physical Attacker;Special Attacker;Has Speed Control;Sun weather synergy
+Lilligant,Hisuian,A,Physical Attacker;Sun weather synergy
+Terrakion,Base,A,Physical Attacker
+Tornadus,Incarnate Forme,A,Support;Has Speed Control
+Landorus,Incarnate Forme,A,Physical Attacker;Special Attacker
+Genesect,Base,A,Special Attacker;Has Speed Control
+Meowstic,Male,A,Support;Has Speed Control
+Hawlucha,Base,A,Physical Attacker;Has Speed Control
+Goodra,Hisuian,A,Special Attacker;Defensive
+Volcanion,Base,A,Special Attacker
+Tsareena,Base,A,Physical Attacker;Support
+Tapu Bulu,Base,A,Physical Attacker;Support
+Corviknight,Base,A,Support;Defensive
+Corviknight,Gigantamax,A,Support;Defensive
+Coalossal,Base,A,Special Attacker;Defensive
+Toxtricity,Gigantamax,A,Special Attacker
+Arctozolt,Base,A,Physical Attacker;Snow weather synergy
+Duraludon,Gigantamax,A,Special Attacker
+Zamazenta,Hero of Many Battles,A,Physical Attacker;Defensive
+Basculegion,Male,A,Physical Attacker
+Basculegion,Female,A,Special Attacker
+Quaquaval,Base,A,Physical Attacker;Stat Boosting Setup;Has Speed Control
+Armarouge,Base,A,Special Attacker;Support
+Ceruledge,Base,A,Physical Attacker;Stat Boosting Setup
+Rabsca,Base,A,Support;Has Speed Control
+Houndstone,Base,A,Physical Attacker
+Flamigo,Base,A,Physical Attacker;Has Speed Control
+Farigiraf,Base,A,Support;Defensive
+Slither Wing,Base,A,Physical Attacker;Support
+Iron Treads,Base,A,Physical Attacker;Support
+Wo-Chien,Base,A,Defensive;Support
+Feraligatr,Mega,A,Physical Attacker;Stat Boosting Setup;Rain weather synergy
+Delphox,Mega,A,Special Attacker;Has Speed Control
+Hawlucha,Mega,A,Physical Attacker;Has Speed Control
+Meowstic,Mega,A,Support;Has Speed Control
+Raichu,Alolan,A-,Support;Special Attacker;Has Speed Control
+Clefairy,Base,A-,Support
+Ninetales,Alolan,A-,Support;Snow weather setter;Snow weather synergy;Has Speed Control
+Gengar,Mega,A-,Special Attacker;Has Speed Control
+Weezing,Galarian,A-,Support;Defensive
+Gyarados,Base,A-,Physical Attacker;Stat Boosting Setup;Has Speed Control
+Snorlax,Base,A-,Physical Attacker;Defensive;Needs Speed Control
+Moltres,Galarian,A-,Special Attacker;Stat Boosting Setup
+Mewtwo,Mega Y,A-,Special Attacker;Has Speed Control
+Mew,Base,A-,Support;Has Speed Control;Special Attacker
+Azumarill,Base,A-,Physical Attacker
+Scizor,Mega,A-,Physical Attacker;Defensive
+Kingdra,Base,A-,Special Attacker;Rain weather synergy
+Smeargle,Base,A-,Support
+Blaziken,Base,A-,Physical Attacker;Stat Boosting Setup
+Swampert,Base,A-,Physical Attacker;Rain weather synergy
+Gardevoir,Mega,A-,Special Attacker;Support
+Breloom,Base,A-,Physical Attacker;Support
+Medicham,Mega,A-,Physical Attacker
+Milotic,Base,A-,Support;Defensive
+Latias,Mega,A-,Support;Special Attacker
+Latios,Base,A-,Special Attacker;Has Speed Control
+Deoxys,Speed,A-,Support;Has Speed Control
+Staraptor,Base,A-,Physical Attacker;Has Speed Control
+Roserade,Base,A-,Support;Special Attacker
+Pachirisu,Base,A-,Support
+Cherrim,Base,A-,Support;Sun weather synergy
+Lopunny,Mega,A-,Physical Attacker;Has Speed Control
+Garchomp,Mega,A-,Physical Attacker
+Lucario,Base,A-,Physical Attacker;Special Attacker
+Hippowdon,Base,A-,Defensive;Sand weather setter;Sand weather synergy
+Toxicroak,Base,A-,Physical Attacker;Rain weather synergy
+Weavile,Base,A-,Physical Attacker;Has Speed Control
+Rhyperior,Base,A-,Physical Attacker;Needs Speed Control;Sand weather synergy
+Gallade,Mega,A-,Physical Attacker
+Rotom,Heat,A-,Support;Special Attacker;Sun weather synergy
+Giratina,Origin,A-,Special Attacker;Physical Attacker
+Shaymin,Sky Forme,A-,Special Attacker;Has Speed Control
+Serperior,Base,A-,Special Attacker;Has Speed Control
+Samurott,Hisuian,A-,Physical Attacker
+Gigalith,Base,A-,Physical Attacker;Sand weather setter;Sand weather synergy
+Lilligant,Base,A-,Special Attacker;Sun weather synergy
+Krookodile,Base,A-,Physical Attacker
+Darmanitan,Standard Mode,A-,Physical Attacker
+Cofagrigus,Base,A-,Support;Defensive;Needs Speed Control
+Zoroark,Hisuian,A-,Special Attacker;Has Speed Control
+Vanilluxe,Base,A-,Special Attacker;Snow weather setter;Snow weather synergy
+Escavalier,Base,A-,Physical Attacker;Needs Speed Control
+Jellicent,Base,A-,Support;Defensive;Needs Speed Control
+Haxorus,Base,A-,Physical Attacker
+Mandibuzz,Base,A-,Support;Defensive
+Durant,Base,A-,Physical Attacker;Has Speed Control
+Kyurem,Base,A-,Special Attacker
+Keldeo,Ordinary Forme,A-,Special Attacker
+Keldeo,Resolute Forme,A-,Special Attacker
+Diggersby,Base,A-,Physical Attacker
+Dragalge,Base,A-,Special Attacker;Needs Speed Control
+Tyrantrum,Base,A-,Physical Attacker
+Goodra,Base,A-,Special Attacker
+Noivern,Base,A-,Special Attacker;Has Speed Control
+Zygarde,10% Forme,A-,Physical Attacker;Has Speed Control
+Diancie,Base,A-,Special Attacker;Support
+Decidueye,Hisuian,A-,Physical Attacker
+Vikavolt,Base,A-,Special Attacker;Needs Speed Control
+Lycanroc,Dusk Form,A-,Physical Attacker;Has Speed Control
+Toxapex,Base,A-,Support;Defensive
+Araquanid,Base,A-,Physical Attacker;Needs Speed Control
+Bewear,Base,A-,Physical Attacker;Needs Speed Control
+Palossand,Base,A-,Support;Defensive;Needs Speed Control
+Togedemaru,Base,A-,Support;Physical Attacker;Has Speed Control
+Nihilego,Base,A-,Special Attacker;Has Speed Control
+Xurkitree,Base,A-,Special Attacker;Stat Boosting Setup
+Necrozma,Base,A-,Special Attacker
+Inteleon,Base,A-,Special Attacker;Has Speed Control
+Inteleon,Gigantamax,A-,Special Attacker;Has Speed Control
+Toxtricity,Amped Form,A-,Special Attacker
+Toxtricity,Low Key Form,A-,Special Attacker
+Polteageist,Base,A-,Special Attacker;Stat Boosting Setup
+Perrserker,Base,A-,Physical Attacker;Support
+Alcremie,Base,A-,Support
+Dracozolt,Base,A-,Physical Attacker
+Duraludon,Base,A-,Special Attacker
+Zarude,Base,A-,Physical Attacker
+Zarude,Dada Form,A-,Physical Attacker
+Regidrago,Base,A-,Special Attacker
+Wyrdeer,Base,A-,Physical Attacker;Support;Needs Speed Control
+Kleavor,Base,A-,Physical Attacker
+Lokix,Base,A-,Physical Attacker;Has Speed Control
+Pawmot,Base,A-,Physical Attacker;Support;Has Speed Control
+Maushold,Family of Four,A-,Support;Has Speed Control
+Arboliva,Base,A-,Special Attacker;Support;Sun weather synergy
+Garganacl,Base,A-,Defensive;Support
+Bellibolt,Base,A-,Special Attacker;Support
+Kilowattrel,Base,A-,Special Attacker;Has Speed Control
+Brambleghast,Base,A-,Physical Attacker;Support
+Scovillain,Base,A-,Special Attacker;Sun weather synergy;Stat Boosting Setup
+Bombirdier,Base,A-,Physical Attacker;Support
+Cyclizar,Base,A-,Support;Physical Attacker;Has Speed Control
+Cetitan,Base,A-,Physical Attacker;Snow weather synergy
+Veluza,Base,A-,Physical Attacker;Has Speed Control
+Tatsugiri,Curly Form,A-,Support
+Tatsugiri,Droopy Form,A-,Support
+Tatsugiri,Stretchy Form,A-,Support
+Brute Bonnet,Base,A-,Physical Attacker;Support
+Sandy Shocks,Base,A-,Special Attacker;Has Speed Control
+Iron Jugulis,Base,A-,Special Attacker
+Iron Thorns,Base,A-,Physical Attacker;Defensive
+Okidogi,Base,A-,Physical Attacker;Support
+Munkidori,Base,A-,Special Attacker;
+Fezandipiti,Base,A-,Support;Has Speed Control
+Emboar,Mega,A-,Physical Attacker;Stat Boosting Setup;Needs Speed Control
+Chesnaught,Mega,A-,Physical Attacker;Defensive;Support
+Scolipede,Mega,A-,Physical Attacker;Has Speed Control
+Scrafty,Mega,A-,Physical Attacker;Support;Stat Boosting Setup
+Victreebel,Mega,A-,Physical Attacker;Sun weather synergy
+Raichu,Mega X,A-,Support;Special Attacker;Has Speed Control
+Raichu,Mega Y,A-,Support;Special Attacker;Has Speed Control
+Scovillain,Mega,A-,Special Attacker;Sun weather synergy;Stat Boosting Setup
+Venusaur,Base,A+,Special Attacker;Stat Boosting Setup;Has Speed Control;Sun weather synergy
+Arcanine,Base,A+,Support;Physical Attacker;Has Speed Control
+Politoed,Base,A+,Support;Rain weather setter;Rain weather synergy
+Tyranitar,Base,A+,Physical Attacker;Sand weather setter;Sand weather synergy
+Pelipper,Base,A+,Support;Rain weather setter;Rain weather synergy
+Mawile,Mega,A+,Physical Attacker
+Salamence,Mega,A+,Physical Attacker;Has Speed Control
+Metagross,Base,A+,Physical Attacker;Defensive
+Ferrothorn,Base,A+,Defensive;Support
+Tornadus,Therian Forme,A+,Support;Has Speed Control
+Thundurus,Therian Forme,A+,Special Attacker;Has Speed Control
+Zamazenta,Crowned Shield,A+,Physical Attacker;Defensive
+Skarmory,Mega,A+,Defensive;Support
+Heatran,Mega,A+,Special Attacker;Defensive;Sun weather synergy
+Charizard,Mega X,B,Physical Attacker;Stat Boosting Setup
+Blastoise,Mega,B,Special Attacker;Stat Boosting Setup
+Raichu,Base,B,Support;Has Speed Control
+Clefable,Base,B,Support;Special Attacker
+Ninetales,Base,B,Support;Sun weather setter;Sun weather synergy
+Slowbro,Mega,B,Defensive
+Gengar,Base,B,Special Attacker;Has Speed Control
+Chansey,Base,B,Support;Defensive
+Pinsir,Mega,B,Physical Attacker;Has Speed Control
+Tauros,Paldean Blaze,B,Physical Attacker;Sun weather synergy
+Tauros,Paldean Aqua,B,Physical Attacker;Rain weather synergy
+Typhlosion,Hisuian,B,Special Attacker;Sun weather synergy
+Slowking,Galarian,B,Special Attacker;Defensive;Needs Speed Control
+Heracross,Mega,B,Physical Attacker
+Raikou,Base,B,Special Attacker;Has Speed Control
+Celebi,Base,B,Support;Special Attacker
+Absol,Mega,B,Physical Attacker
+Deoxys,Normal,B,Special Attacker;Has Speed Control
+Abomasnow,Base,B,Special Attacker;Snow weather setter;Snow weather synergy
+Rotom,Base,B,Support;Special Attacker
+Uxie,Base,B,Support;Defensive
+Azelf,Base,B,Special Attacker;Has Speed Control
+Liepard,Base,B,Support;Has Speed Control
+Scolipede,Base,B,Physical Attacker;Has Speed Control
+Braviary,Hisuian,B,Special Attacker
+Delphox,Base,B,Special Attacker;Has Speed Control
+Clawitzer,Base,B,Special Attacker
+Oricorio,Pa'u Style,B,Support;Has Speed Control
+Oricorio,Sensu Style,B,Support;Has Speed Control
+Wishiwashi,School Form,B,Special Attacker;Physical Attacker;Needs Speed Control
+Shiinotic,Base,B,Support;Needs Speed Control
+Golisopod,Base,B,Physical Attacker
+Silvally,Base,B,Physical Attacker;Special Attacker;Support
+Drednaw,Gigantamax,B,Physical Attacker;Rain weather synergy
+Sandaconda,Gigantamax,B,Physical Attacker;Defensive;Sand weather synergy
+Centiskorch,Gigantamax,B,Physical Attacker
+Pincurchin,Base,B,Support;Needs Speed Control
+Copperajah,Base,B,Physical Attacker
+Arctovish,Base,B,Physical Attacker;Snow weather synergy
+Calyrex,Base,B,Support
+Pyroar,Mega,B,Special Attacker;Sun weather synergy
+Nidoking,Base,B-,Special Attacker;Physical Attacker
+Alakazam,Mega,B-,Special Attacker;Has Speed Control
+Slowbro,Base,B-,Defensive;Has Speed Control
+Slowbro,Galarian,B-,Special Attacker;Defensive
+Muk,Alolan,B-,Physical Attacker;Defensive
+Cloyster,Base,B-,Physical Attacker;Stat Boosting Setup
+Marowak,Alolan,B-,Physical Attacker;Sun weather synergy
+Scyther,Base,B-,Physical Attacker;Has Speed Control
+Tauros,Paldean Combat,B-,Physical Attacker
+Lapras,Gigantamax,B-,Special Attacker;Defensive
+Aerodactyl,Mega,B-,Physical Attacker;Has Speed Control
+Articuno,Galarian,B-,Special Attacker;Has Speed Control
+Feraligatr,Base,B-,Physical Attacker;Stat Boosting Setup
+Jumpluff,Base,B-,Support;Has Speed Control;Sun weather synergy
+Slowking,Base,B-,Special Attacker;Defensive;Needs Speed Control
+Heracross,Base,B-,Physical Attacker
+Houndoom,Mega,B-,Special Attacker;Sun weather synergy
+Blissey,Base,B-,Support;Defensive
+Sceptile,Mega,B-,Special Attacker;Has Speed Control
+Shiftry,Base,B-,Physical Attacker;Special Attacker;Sun weather synergy
+Hariyama,Base,B-,Physical Attacker;Needs Speed Control
+Medicham,Base,B-,Physical Attacker
+Sharpedo,Mega,B-,Physical Attacker;Has Speed Control
+Camerupt,Mega,B-,Special Attacker;Needs Speed Control;Sun weather synergy
+Flygon,Base,B-,Physical Attacker
+Crawdaunt,Base,B-,Physical Attacker;Needs Speed Control
+Registeel,Base,B-,Defensive;Support
+Torterra,Base,B-,Physical Attacker;Defensive;Needs Speed Control
+Empoleon,Base,B-,Special Attacker;Defensive
+Floatzel,Base,B-,Physical Attacker;Rain weather synergy;Has Speed Control
+Drifblim,Base,B-,Support;Has Speed Control
+Spiritomb,Base,B-,Support;Defensive
+Tangrowth,Base,B-,Defensive;Physical Attacker
+Porygon-Z,Base,B-,Special Attacker
+Froslass,Base,B-,Support;Has Speed Control
+Rotom,Frost,B-,Support;Special Attacker;Snow weather synergy
+Mesprit,Base,B-,Support;Special Attacker
+Shaymin,Land Forme,B-,Support;Special Attacker
+Samurott,Base,B-,Physical Attacker
+Stoutland,Base,B-,Physical Attacker;Sand weather synergy
+Musharna,Base,B-,Support;Defensive;Needs Speed Control
+Audino,Mega,B-,Support;Defensive
+Basculin,White Stripe,B-,Physical Attacker
+Cinccino,Base,B-,Physical Attacker;Has Speed Control
+Foongus,Base,B-,Support
+Galvantula,Base,B-,Special Attacker;Has Speed Control
+Klinklang,Base,B-,Physical Attacker;Stat Boosting Setup
+Eelektross,Base,B-,Physical Attacker;Special Attacker
+Beartic,Base,B-,Physical Attacker;Snow weather synergy
+Stunfisk,Galarian,B-,Defensive;Support
+Golurk,Base,B-,Physical Attacker
+Braviary,Base,B-,Physical Attacker
+Virizion,Base,B-,Physical Attacker;Support
+Chesnaught,Base,B-,Physical Attacker;Defensive;Support
+Vivillon,Base,B-,Support;Has Speed Control
+Floette,Eternal Flower,B-,Special Attacker
+Florges,Red Flower,B-,Support;Special Attacker
+Florges,Yellow Flower,B-,Support;Special Attacker
+Florges,Orange Flower,B-,Support;Special Attacker
+Florges,Blue Flower,B-,Support;Special Attacker
+Florges,White Flower,B-,Support;Special Attacker
+Pangoro,Base,B-,Physical Attacker
+Aromatisse,Base,B-,Support;Needs Speed Control
+Slurpuff,Base,B-,Support;Has Speed Control
+Barbaracle,Base,B-,Physical Attacker;Stat Boosting Setup
+Aurorus,Base,B-,Special Attacker;Snow weather setter;Snow weather synergy
+Trevenant,Base,B-,Physical Attacker;Support
+Decidueye,Base,B-,Physical Attacker
+Oricorio,Baile Style,B-,Support;Has Speed Control
+Oricorio,Pom-Pom Style,B-,Support;Has Speed Control
+Lurantis,Base,B-,Physical Attacker
+Turtonator,Base,B-,Special Attacker;Needs Speed Control
+Drampa,Base,B-,Special Attacker;Needs Speed Control
+Dhelmise,Base,B-,Physical Attacker;Needs Speed Control
+Guzzlord,Base,B-,Special Attacker;Needs Speed Control
+Eldegoss,Base,B-,Support;Defensive
+Drednaw,Base,B-,Physical Attacker;Rain weather synergy
+Boltund,Base,B-,Physical Attacker;Has Speed Control
+Flapple,Base,B-,Physical Attacker
+Appletun,Base,B-,Special Attacker;Defensive
+Sandaconda,Base,B-,Physical Attacker;Defensive;Sand weather synergy
+Cramorant,Base,B-,Support;Special Attacker
+Centiskorch,Base,B-,Physical Attacker
+Obstagoon,Base,B-,Physical Attacker
+Cursola,Base,B-,Special Attacker;Needs Speed Control
+Sirfetch'd,Base,B-,Physical Attacker
+Mr. Rime,Base,B-,Support;Special Attacker;Has Speed Control
+Runerigus,Base,B-,Support;Defensive;Needs Speed Control
+Falinks,Base,B-,Physical Attacker;Stat Boosting Setup
+Frosmoth,Base,B-,Special Attacker;Stat Boosting Setup
+Eiscue,Ice Face Form,B-,Physical Attacker
+Eiscue,Noice Face Form,B-,Physical Attacker;Has Speed Control
+Morpeko,Base,B-,Physical Attacker;Has Speed Control
+Dachsbun,Base,B-,Support;Defensive
+Klawf,Base,B-,Physical Attacker
+Dudunsparce,Three-Segment Form,B-,Physical Attacker;Support
+Venusaur,Mega,B+,Special Attacker;Defensive;Stat Boosting Setup;Sun weather synergy
+Charizard,Base,B+,Special Attacker;Sun weather synergy;Needs Speed Control
+Charizard,Gigantamax,B+,Special Attacker;Sun weather synergy
+Arcanine,Hisuian,B+,Physical Attacker;Defensive
+Moltres,Base,B+,Special Attacker
+Mewtwo,Base,B+,Special Attacker;Has Speed Control
+Mewtwo,Mega X,B+,Physical Attacker;Stat Boosting Setup
+Crobat,Base,B+,Support;Has Speed Control
+Umbreon,Base,B+,Support;Defensive
+Entei,Base,B+,Physical Attacker;Sun weather synergy
+Lugia,Base,B+,Support;Defensive
+Ho-Oh,Base,B+,Physical Attacker;Defensive;Sun weather synergy
+Gardevoir,Base,B+,Special Attacker;Support
+Manectric,Mega,B+,Special Attacker;Has Speed Control
+Altaria,Mega,B+,Physical Attacker;Support
+Latias,Base,B+,Support;Special Attacker
+Deoxys,Attack,B+,Special Attacker;Physical Attacker;Has Speed Control
+Infernape,Base,B+,Physical Attacker;Special Attacker;Has Speed Control
+Abomasnow,Mega,B+,Special Attacker;Snow weather setter;Snow weather synergy
+Magnezone,Base,B+,Special Attacker
+Gliscor,Base,B+,Defensive;Physical Attacker
+Gallade,Base,B+,Physical Attacker
+Rotom,Mow,B+,Support;Special Attacker
+Giratina,Altered,B+,Defensive;Support
+Manaphy,Base,B+,Special Attacker;Rain weather synergy
+Darkrai,Base,B+,Special Attacker;Has Speed Control
+Seismitoad,Base,B+,Physical Attacker;Rain weather synergy
+Cottonee,Base,B+,Support;Has Speed Control
+Darmanitan,Galarian Zen Mode,B+,Physical Attacker
+Archeops,Base,B+,Physical Attacker;Has Speed Control
+Zoroark,Base,B+,Special Attacker;Has Speed Control
+Reuniclus,Base,B+,Special Attacker;Needs Speed Control
+Alomomola,Base,B+,Support;Defensive
+Cobalion,Base,B+,Support;Physical Attacker;Has Speed Control
+Meloetta,Aria Forme,B+,Special Attacker;Support
+Meloetta,Pirouette Forme,B+,Physical Attacker;Has Speed Control
+Meowstic,Female,B+,Support;Has Speed Control
+Heliolisk,Base,B+,Special Attacker;Has Speed Control
+Hoopa,Confined,B+,Special Attacker
+Lycanroc,Midday Form,B+,Physical Attacker;Has Speed Control
+Salazzle,Base,B+,Special Attacker;Has Speed Control
+Passimian,Base,B+,Physical Attacker;Support
+Buzzwole,Base,B+,Physical Attacker
+Orbeetle,Base,B+,Support;Defensive
+Orbeetle,Gigantamax,B+,Support;Defensive
+Stonjourner,Base,B+,Physical Attacker;Support
+Copperajah,Gigantamax,B+,Physical Attacker
+Overqwil,Base,B+,Physical Attacker
+Maushold,Family of Three,B+,Support;Has Speed Control
+Grafaiai,Base,B+,Support;Has Speed Control
+Toedscruel,Base,B+,Support;Has Speed Control
+Revavroom,Base,B+,Physical Attacker;Has Speed Control
+Orthworm,Base,B+,Defensive;Support
+Eelektross,Mega,B+,Special Attacker;Physical Attacker
+Falinks,Mega,B+,Physical Attacker;Stat Boosting Setup
+Froslass,Mega,B+,Special Attacker;Snow weather synergy;Has Speed Control
+Malamar,Mega,B+,Physical Attacker;Stat Boosting Setup
+Golurk,Mega,B+,Physical Attacker;Support
+Crabominable,Mega,B+,Physical Attacker;Snow weather synergy
+Blastoise,Base,C,Special Attacker;Defensive
+Blastoise,Gigantamax,C,Special Attacker;Defensive
+Pidgeot,Mega,C,Special Attacker;Has Speed Control
+Nidoqueen,Base,C,Special Attacker;Defensive
+Poliwrath,Base,C,Physical Attacker;Rain weather synergy
+Alakazam,Base,C,Special Attacker;Has Speed Control
+Victreebel,Base,C,Physical Attacker;Special Attacker;Sun weather synergy
+Kingler,Gigantamax,C,Physical Attacker
+Electrode,Hisuian,C,Support;Has Speed Control
+Ampharos,Base,C,Special Attacker
+Steelix,Mega,C,Physical Attacker;Defensive;Sand weather synergy
+Houndoom,Base,C,Special Attacker;Sun weather synergy
+Miltank,Base,C,Support;Defensive
+Shedinja,Base,C,Support
+Mawile,Base,C,Support;Physical Attacker
+Aggron,Base,C,Physical Attacker;Defensive
+Sharpedo,Base,C,Physical Attacker;Has Speed Control
+Camerupt,Base,C,Special Attacker;Needs Speed Control;Sun weather synergy
+Claydol,Base,C,Support;Needs Speed Control
+Glalie,Mega,C,Special Attacker
+Regice,Base,C,Special Attacker;Snow weather synergy
+Electivire,Base,C,Physical Attacker
+Regigigas,Base,C,Physical Attacker
+Leavanny,Base,C,Physical Attacker;Support
+Crustle,Base,C,Physical Attacker
+Garbodor,Gigantamax,C,Defensive
+Emolga,Base,C,Support;Has Speed Control
+Grapploct,Base,C,Physical Attacker
+Morgrem,Base,C,Support
+Oinkologne,Female,C,Support;Defensive
+Sandslash,Alolan,C-,Physical Attacker;Snow weather synergy;Has Speed Control
+Vileplume,Base,C-,Support;Special Attacker;Sun weather synergy
+Venomoth,Base,C-,Support;Stat Boosting Setup;Has Speed Control
+Golduck,Base,C-,Special Attacker;Rain weather synergy
+Machamp,Base,C-,Physical Attacker
+Machamp,Gigantamax,C-,Physical Attacker
+Tentacruel,Base,C-,Support;Defensive
+Rapidash,Galarian,C-,Physical Attacker;Has Speed Control
+Muk,Base,C-,Physical Attacker;Defensive
+Kingler,Base,C-,Physical Attacker
+Hitmonlee,Base,C-,Physical Attacker
+Mr. Mime,Base,C-,Support;Has Speed Control
+Jynx,Base,C-,Special Attacker;Has Speed Control
+Electabuzz,Base,C-,Special Attacker;Has Speed Control
+Tauros,Base,C-,Physical Attacker
+Jolteon,Base,C-,Special Attacker;Has Speed Control
+Omastar,Base,C-,Special Attacker;Rain weather synergy
+Kabutops,Base,C-,Physical Attacker;Rain weather synergy
+Articuno,Base,C-,Defensive
+Togetic,Base,C-,Support
+Quagsire,Base,C-,Defensive
+Forretress,Base,C-,Defensive;Support
+Steelix,Base,C-,Physical Attacker;Defensive;Sand weather synergy
+Granbull,Base,C-,Physical Attacker
+Ursaring,Base,C-,Physical Attacker;Stat Boosting Setup
+Piloswine,Base,C-,Physical Attacker;Snow weather synergy
+Donphan,Base,C-,Physical Attacker
+Linoone,Galarian,C-,Physical Attacker;Stat Boosting Setup
+Swellow,Base,C-,Physical Attacker;Has Speed Control
+Slaking,Base,C-,Physical Attacker
+Exploud,Base,C-,Special Attacker
+Roselia,Base,C-,Support;Special Attacker
+Cacturne,Base,C-,Physical Attacker;Sun weather synergy
+Lunatone,Base,C-,Support;Needs Speed Control
+Solrock,Base,C-,Support;Physical Attacker
+Whiscash,Base,C-,Physical Attacker;Needs Speed Control
+Cradily,Base,C-,Defensive;Sand weather synergy
+Glalie,Base,C-,Special Attacker
+Walrein,Base,C-,Defensive;Snow weather synergy
+Rampardos,Base,C-,Physical Attacker
+Bastiodon,Base,C-,Defensive;Support
+Vespiquen,Base,C-,Support;Defensive
+Ambipom,Base,C-,Physical Attacker;Has Speed Control
+Lopunny,Base,C-,Physical Attacker
+Skuntank,Base,C-,Physical Attacker;Support
+Lickilicky,Base,C-,Support;Defensive
+Probopass,Base,C-,Defensive;Support
+Swoobat,Base,C-,Special Attacker;Stat Boosting Setup;Has Speed Control
+Audino,Base,C-,Support;Defensive
+Sawk,Base,C-,Physical Attacker
+Carracosta,Base,C-,Physical Attacker;Rain weather synergy
+Garbodor,Base,C-,Defensive
+Swanna,Base,C-,Special Attacker;Has Speed Control
+Stunfisk,Base,C-,Support
+Gogoat,Base,C-,Physical Attacker
+Dedenne,Base,C-,Support;Has Speed Control
+Avalugg,Base,C-,Defensive
+Toucannon,Base,C-,Physical Attacker
+Komala,Base,C-,Physical Attacker
+Greedent,Base,C-,Physical Attacker;Defensive
+Thievul,Base,C-,Support;Has Speed Control
+Dubwool,Base,C-,Defensive
+Oinkologne,Male,C-,Physical Attacker;Support
+Spidops,Base,C-,Support;Defensive
+Squawkabilly,Green Plumage,C-,Physical Attacker
+Squawkabilly,Blue Plumage,C-,Physical Attacker
+Squawkabilly,Yellow Plumage,C-,Physical Attacker
+Squawkabilly,White Plumage,C-,Physical Attacker
+Wugtrio,Base,C-,Physical Attacker
+Kangaskhan,Base,"C""",
+Butterfree,Base,C+,Support;Has Speed Control
+Butterfree,Gigantamax,C+,Support;Has Speed Control
+Beedrill,Mega,C+,Physical Attacker;Has Speed Control
+Persian,Alolan,C+,Support;Has Speed Control
+Electrode,Base,C+,Support;Has Speed Control
+Exeggutor,Base,C+,Special Attacker;Sun weather synergy
+Exeggutor,Alolan,C+,Special Attacker;Sun weather synergy
+Weezing,Base,C+,Support;Defensive
+Starmie,Base,C+,Special Attacker;Has Speed Control
+Lapras,Base,C+,Special Attacker;Defensive
+Aerodactyl,Base,C+,Support;Has Speed Control
+Typhlosion,Base,C+,Special Attacker;Sun weather synergy
+Lanturn,Base,C+,Support;Special Attacker;Rain weather synergy
+Xatu,Base,C+,Support;Has Speed Control
+Ampharos,Mega,C+,Special Attacker;Defensive
+Espeon,Base,C+,Special Attacker;Has Speed Control
+Girafarig,Base,C+,Support;Special Attacker
+Qwilfish,Base,C+,Support;Rain weather synergy
+Qwilfish,Hisuian,C+,Support;Physical Attacker
+Corsola,Galarian,C+,Defensive;Support
+Mantine,Base,C+,Support;Defensive;Rain weather synergy
+Skarmory,Base,C+,Defensive;Support
+Sceptile,Base,C+,Special Attacker;Has Speed Control
+Masquerain,Base,C+,Support;Has Speed Control
+Ninjask,Base,C+,Support;Has Speed Control
+Aggron,Mega,C+,Physical Attacker;Defensive
+Manectric,Base,C+,Special Attacker;Has Speed Control
+Altaria,Base,C+,Support;Physical Attacker
+Banette,Mega,C+,Support;Physical Attacker
+Absol,Base,C+,Physical Attacker
+Regirock,Base,C+,Defensive;Sand weather synergy
+Deoxys,Defense,C+,Defensive;Support
+Luxray,Base,C+,Physical Attacker
+Mismagius,Base,C+,Special Attacker;Has Speed Control
+Honchkrow,Base,C+,Physical Attacker
+Drapion,Base,C+,Physical Attacker
+Magmortar,Base,C+,Special Attacker
+Yanmega,Base,C+,Special Attacker;Has Speed Control
+Leafeon,Base,C+,Physical Attacker;Sun weather synergy
+Glaceon,Base,C+,Special Attacker;Snow weather synergy
+Dusknoir,Base,C+,Support;Defensive;Needs Speed Control
+Rotom,Fan,C+,Support;Has Speed Control
+Emboar,Base,C+,Physical Attacker;Special Attacker;Needs Speed Control
+Zebstrika,Base,C+,Special Attacker;Has Speed Control
+Basculin,Red Stripe,C+,Physical Attacker
+Basculin,Blue Stripe,C+,Physical Attacker
+Darmanitan,Zen Mode,C+,Special Attacker;Needs Speed Control
+Sigilyph,Base,C+,Special Attacker
+Sawsbuck,Spring Form,C+,Physical Attacker
+Sawsbuck,Summer Form,C+,Physical Attacker
+Sawsbuck,Autumn Form,C+,Physical Attacker
+Sawsbuck,Winter Form,C+,Physical Attacker
+Beheeyem,Base,C+,Special Attacker;Needs Speed Control
+Cryogonal,Base,C+,Support;Special Attacker
+Accelgor,Base,C+,Support;Has Speed Control
+Druddigon,Base,C+,Physical Attacker
+Bouffalant,Base,C+,Physical Attacker
+Pyroar,Base,C+,Special Attacker;Has Speed Control
+Doublade,Base,C+,Physical Attacker;Defensive
+Malamar,Base,C+,Physical Attacker;Stat Boosting Setup
+Carbink,Base,C+,Support;Defensive
+Gourgeist,Average Size,C+,Support
+Gourgeist,Small Size,C+,Support;Has Speed Control
+Gourgeist,Large Size,C+,Support
+Gourgeist,Super Size,C+,Support;Defensive
+Avalugg,Hisuian,C+,Physical Attacker;Defensive
+Crabominable,Base,C+,Physical Attacker;Needs Speed Control;Snow weather synergy
+Lycanroc,Midnight Form,C+,Physical Attacker
+Pyukumuku,Base,C+,Support;Defensive
+Type: Null,Base,C+,Physical Attacker;Defensive
+Minior,Meteor Form,C+,Physical Attacker;Has Speed Control
+Bruxish,Base,C+,Physical Attacker
+Mabosstiff,Base,C+,Physical Attacker
+Palafin,Zero Form,C+,Physical Attacker
+Dudunsparce,Two-Segment Form,C+,Physical Attacker;Support
+Dugtrio,Base,D,Physical Attacker;Has Speed Control
+Primeape,Base,D,Physical Attacker;Stat Boosting Setup
+Golem,Base,D,Physical Attacker;Sand weather synergy
+Rapidash,Base,D,Physical Attacker;Sun weather synergy
+Marowak,Base,D,Physical Attacker
+Noctowl,Base,D,Support;Special Attacker
+Dunsparce,Base,D,Support
+Vigoroth,Base,D,Physical Attacker
+Chimecho,Base,D,Support
+Wormadam,Trash Cloak,D,Defensive
+Simisear,Base,D,Special Attacker
+Throh,Base,D,Physical Attacker
+Raticate,Alolan,D-,Physical Attacker;Needs Speed Control
+Arbok,Base,D-,Support;Physical Attacker
+Sandslash,Base,D-,Physical Attacker
+Wigglytuff,Base,D-,Support;Special Attacker
+Golbat,Base,D-,Support;Has Speed Control
+Parasect,Base,D-,Support;Physical Attacker
+Dugtrio,Alolan,D-,Physical Attacker
+Persian,Base,D-,Support;Has Speed Control
+Golem,Alolan,D-,Physical Attacker
+Farfetch'd,Galarian,D-,Physical Attacker
+Dodrio,Base,D-,Physical Attacker;Has Speed Control
+Dewgong,Base,D-,Defensive;Snow weather synergy
+Onix,Base,D-,Support;Defensive
+Hypno,Base,D-,Support
+Lickitung,Base,D-,Support;Defensive
+Seadra,Base,D-,Special Attacker;Rain weather synergy
+Flareon,Base,D-,Physical Attacker;Sun weather synergy
+Furret,Base,D-,Support
+Ariados,Base,D-,Support;Physical Attacker
+Sunflora,Base,D-,Special Attacker;Sun weather synergy
+Yanma,Base,D-,Special Attacker;Has Speed Control
+Wobbuffet,Base,D-,Support;Defensive
+Magcargo,Base,D-,Defensive;Sun weather synergy
+Corsola,Base,D-,Defensive
+Mightyena,Base,D-,Physical Attacker;Support
+Linoone,Base,D-,Physical Attacker
+Beautifly,Base,D-,Special Attacker
+Dustox,Base,D-,Defensive;Support
+Loudred,Base,D-,Special Attacker
+Swalot,Base,D-,Defensive
+Wailord,Base,D-,Special Attacker
+Vibrava,Base,D-,Physical Attacker;Has Speed Control
+Seviper,Base,D-,Physical Attacker;Special Attacker
+Castform,Base,D-,Support
+Castform,Sunny,D-,Special Attacker;Sun weather synergy
+Castform,Rainy,D-,Special Attacker;Rain weather synergy
+Castform,Snowy,D-,Special Attacker;Snow weather synergy
+Huntail,Base,D-,Physical Attacker
+Gorebyss,Base,D-,Special Attacker
+Kricketune,Base,D-,Support;Physical Attacker
+Wormadam,Plant Cloak,D-,Defensive
+Wormadam,Sandy Cloak,D-,Defensive
+Mothim,Base,D-,Special Attacker
+Chatot,Base,D-,Special Attacker
+Carnivine,Base,D-,Physical Attacker
+Watchog,Base,D-,Support
+Maractus,Base,D-,Special Attacker;Sun weather synergy
+Gumshoos,Base,D-,Physical Attacker
+Beedrill,Base,D-,Physical Attacker
+Pidgeot,Base,D-,Special Attacker
+Pikachu,Base,D+,Support;Special Attacker;Has Speed Control
+Pikachu,Gigantamax,D+,Support;Special Attacker;Has Speed Control
+Magneton,Base,D+,Special Attacker
+Haunter,Base,D+,Special Attacker
+Hitmonchan,Base,D+,Physical Attacker
+Rhydon,Base,D+,Physical Attacker;Sand weather synergy
+Tangela,Base,D+,Defensive
+Mr. Mime,Galarian,D+,Support
+Magmar,Base,D+,Special Attacker;Sun weather synergy
+Pinsir,Base,D+,Physical Attacker
+Ditto,Base,D+,Support
+Vaporeon,Base,D+,Defensive;Rain weather synergy
+Porygon,Base,D+,Support;Special Attacker
+Meganium,Base,D+,Support;Defensive
+Bellossom,Base,D+,Support;Special Attacker;Sun weather synergy
+Sudowoodo,Base,D+,Physical Attacker;Sand weather synergy
+Misdreavus,Base,D+,Support
+Gligar,Base,D+,Defensive
+Shuckle,Base,D+,Support;Defensive
+Sneasel,Base,D+,Physical Attacker;Has Speed Control
+Octillery,Base,D+,Special Attacker;Rain weather synergy
+Stantler,Base,D+,Support
+Combusken,Base,D+,Physical Attacker;Stat Boosting Setup
+Lombre,Base,D+,Support;Rain weather synergy
+Nuzleaf,Base,D+,Physical Attacker;Sun weather synergy
+Plusle,Base,D+,Support;Has Speed Control
+Minun,Base,D+,Support;Has Speed Control
+Volbeat,Base,D+,Support
+Illumise,Base,D+,Support
+Grumpig,Base,D+,Support;Special Attacker
+Zangoose,Base,D+,Physical Attacker
+Armaldo,Base,D+,Physical Attacker
+Kecleon,Base,D+,Support
+Banette,Base,D+,Physical Attacker
+Tropius,Base,D+,Support
+Relicanth,Base,D+,Physical Attacker;Rain weather synergy
+Metang,Base,D+,Physical Attacker;Defensive
+Monferno,Base,D+,Physical Attacker
+Staravia,Base,D+,Physical Attacker
+Bibarel,Base,D+,Support;Physical Attacker
+Purugly,Base,D+,Physical Attacker
+Gabite,Base,D+,Physical Attacker
+Lumineon,Base,D+,Support
+Phione,Base,D+,Support
+Pignite,Base,D+,Physical Attacker
+Dewott,Base,D+,Physical Attacker
+Simisage,Base,D+,Physical Attacker
+Simipour,Base,D+,Special Attacker
+Unfezant,Base,D+,Physical Attacker
+Gurdurr,Base,D+,Physical Attacker
+Palpitoad,Base,D+,Rain weather synergy
+Krokorok,Base,D+,Physical Attacker
+Gothorita,Base,D+,Support
+Deerling,Spring Form,D+,Physical Attacker
+Deerling,Summer Form,D+,Physical Attacker
+Deerling,Autumn Form,D+,Physical Attacker
+Deerling,Winter Form,D+,Physical Attacker
+Eelektrik,Base,D+,Special Attacker
+Lampent,Base,D+,Special Attacker
+Fraxure,Base,D+,Physical Attacker
+Heatmor,Base,D+,Special Attacker
+Zweilous,Base,D+,Physical Attacker
+Braixen,Base,D+,Special Attacker
+Frogadier,Base,D+,Special Attacker;Has Speed Control
+Fletchinder,Base,D+,Physical Attacker
+Furfrou,Natural Form,D+,Support
+Sliggoo,Base,D+,Special Attacker
+Torracat,Base,D+,Physical Attacker
+Charjabug,Base,D+,Support
+Hakamo-o,Base,D+,Physical Attacker
+Thwackey,Base,D+,Physical Attacker
+Raboot,Base,D+,Physical Attacker
+Drizzile,Base,D+,Special Attacker
+Corvisquire,Base,D+,Physical Attacker
+Carkol,Base,D+,Physical Attacker
+Hattrem,Base,D+,Special Attacker
+Drakloak,Base,D+,Physical Attacker
+Floragato,Base,D+,Physical Attacker
+Crocalor,Base,D+,Special Attacker
+Quaxwell,Base,D+,Physical Attacker
+Pawmo,Base,D+,Physical Attacker
+Dolliv,Base,D+,Special Attacker
+Naclstack,Base,D+,Defensive
+Tinkatuff,Base,D+,Support
+Amaura,Base,F,Special Attacker;Snow weather synergy
+Anorith,Base,F,Physical Attacker
+Applin,Base,F,Support
+Archen,Base,F,Physical Attacker
+Aron,Base,F,Physical Attacker
+Arrokuda,Base,F,Physical Attacker
+Baltoy,Base,F,Support
+Barboach,Base,F,Physical Attacker
+Blitzle,Base,F,Physical Attacker
+Boldore,Base,F,Physical Attacker;Sand weather synergy
+Bramblin,Base,F,Physical Attacker
+Bronzor,Base,F,Defensive
+Budew,Base,F,Support;Special Attacker
+Buizel,Base,F,Physical Attacker;Rain weather synergy
+Bulbasaur,Base,F,Special Attacker;Needs Speed Control;Sun weather synergy
+Buneary,Base,F,Physical Attacker
+Cacnea,Base,F,Physical Attacker;Sun weather synergy
+Capsakid,Base,F,Special Attacker;Sun weather synergy
+Carvanha,Base,F,Physical Attacker;Rain weather synergy
+Cetoddle,Base,F,Physical Attacker;Snow weather synergy
+Charmander,Base,F,Special Attacker;Needs Speed Control;Sun weather synergy
+Chespin,Base,F,Physical Attacker
+Chewtle,Base,F,Physical Attacker
+Chimchar,Base,F,Physical Attacker
+Chinchou,Base,F,Special Attacker;Rain weather synergy
+Clauncher,Base,F,Special Attacker
+Clobbopus,Base,F,Physical Attacker
+Corphish,Base,F,Physical Attacker
+Crabrawler,Base,F,Physical Attacker
+Cranidos,Base,F,Physical Attacker
+Croagunk,Base,F,Physical Attacker
+Cubone,Base,F,Physical Attacker
+Cufant,Base,F,Physical Attacker
+Cutiefly,Base,F,Support
+Cyndaquil,Base,F,Special Attacker;Sun weather synergy
+Dartrix,Base,F,Physical Attacker
+Darumaka,Base,F,Physical Attacker;Sun weather synergy
+Darumaka,Galarian,F,Physical Attacker;Snow weather synergy
+Dewpider,Base,F,Support
+Diglett,Alolan,F,Physical Attacker
+Dratini,Base,F,Physical Attacker
+Drifloon,Base,F,Support
+Drilbur,Base,F,Physical Attacker
+Duosion,Base,F,Special Attacker
+Duskull,Base,F,Support;Defensive
+Dwebble,Base,F,Physical Attacker
+Eevee,Base,F,Support
+Eevee,Gigantamax,F,Support
+Electrike,Base,F,Special Attacker
+Elekid,Base,F,Special Attacker
+Espurr,Base,F,Support
+Exeggcute,Base,F,Special Attacker;Sun weather synergy
+Fearow,Base,F,Physical Attacker
+Fennekin,Base,F,Special Attacker
+Finizen,Base,F,Physical Attacker
+Fletchling,Base,F,Physical Attacker
+Flittle,Base,F,Special Attacker
+Frillish,Base,F,Support
+Froakie,Base,F,Special Attacker
+Fuecoco,Base,F,Special Attacker
+Geodude,Base,F,Physical Attacker;Sand weather synergy
+Geodude,Alolan,F,Physical Attacker
+Glimmet,Base,F,Special Attacker
+Golett,Base,F,Physical Attacker
+Greavard,Base,F,Physical Attacker
+Grimer,Base,F,Physical Attacker
+Grimer,Alolan,F,Physical Attacker
+Grookey,Base,F,Physical Attacker
+Grovyle,Base,F,Physical Attacker;Has Speed Control
+Grubbin,Base,F,Special Attacker
+Hatenna,Base,F,Special Attacker
+Helioptile,Base,F,Special Attacker
+Herdier,Base,F,Physical Attacker
+Hippopotas,Base,F,Defensive;Sand weather setter;Sand weather synergy
+Houndour,Base,F,Special Attacker;Sun weather synergy
+Impidimp,Base,F,Support
+Inkay,Base,F,Physical Attacker
+Joltik,Base,F,Special Attacker
+Kabuto,Base,F,Physical Attacker;Rain weather synergy
+Karrablast,Base,F,Physical Attacker
+Klang,Base,F,Physical Attacker
+Klink,Base,F,Physical Attacker
+Koffing,Base,F,Support
+Lairon,Base,F,Physical Attacker
+Lileep,Base,F,Defensive
+Lillipup,Base,F,Physical Attacker
+Litleo,Base,F,Special Attacker;Sun weather synergy
+Litten,Base,F,Physical Attacker
+Litwick,Base,F,Special Attacker
+Luxio,Base,F,Physical Attacker
+Machop,Base,F,Physical Attacker
+Magby,Base,F,Special Attacker
+Makuhita,Base,F,Physical Attacker
+Mankey,Base,F,Physical Attacker
+Mantyke,Base,F,Defensive
+Mareanie,Base,F,Defensive
+Mareep,Base,F,Special Attacker
+Marshtomp,Base,F,Physical Attacker;Rain weather synergy
+Meditite,Base,F,Physical Attacker
+Meltan,Base,F,Physical Attacker
+Meowth,Gigantamax,F,Support
+Mienfoo,Base,F,Physical Attacker
+Mudbray,Base,F,Physical Attacker
+Mudkip,Base,F,Physical Attacker;Rain weather synergy
+Munchlax,Base,F,Physical Attacker;Defensive
+Munna,Base,F,Support
+Nacli,Base,F,Defensive
+Natu,Base,F,Support
+Noibat,Base,F,Special Attacker
+Numel,Base,F,Special Attacker;Sun weather synergy
+Omanyte,Base,F,Special Attacker;Rain weather synergy
+Oshawott,Base,F,Special Attacker
+Pancham,Base,F,Physical Attacker
+Pawmi,Base,F,Physical Attacker
+Pawniard,Base,F,Physical Attacker
+Petilil,Base,F,Support;Sun weather synergy
+Phanpy,Base,F,Physical Attacker
+Phantump,Base,F,Physical Attacker
+Piplup,Base,F,Special Attacker
+Poipole,Base,F,Special Attacker
+Ponyta,Base,F,Physical Attacker;Sun weather synergy
+Ponyta,Galarian,F,Special Attacker
+Popplio,Base,F,Special Attacker
+Pumpkaboo,Average Size,F,Support
+Pumpkaboo,Small Size,F,Support
+Pumpkaboo,Large Size,F,Support
+Pumpkaboo,Super Size,F,Support
+Quaxly,Base,F,Physical Attacker
+Quilladin,Base,F,Physical Attacker;Defensive
+Rhyhorn,Base,F,Physical Attacker;Sand weather synergy
+Rockruff,Base,F,Physical Attacker
+Roggenrola,Base,F,Physical Attacker;Sand weather synergy
+Rolycoly,Base,F,Physical Attacker
+Rookidee,Base,F,Physical Attacker
+Rowlet,Base,F,Physical Attacker
+Rufflet,Base,F,Physical Attacker
+Salandit,Base,F,Special Attacker
+Sandile,Base,F,Physical Attacker
+Sandshrew,Alolan,F,Physical Attacker;Snow weather synergy
+Sandygast,Base,F,Defensive
+Scorbunny,Base,F,Physical Attacker
+Scraggy,Base,F,Physical Attacker
+Sealeo,Base,F,Defensive
+Servine,Base,F,Support
+Shellder,Base,F,Physical Attacker
+Shellos-East Sea,Base,F,Defensive
+Shellos-West Sea,Base,F,Defensive
+Shieldon,Base,F,Defensive
+Shinx,Base,F,Physical Attacker
+Shroomish,Base,F,Support
+Shuppet,Base,F,Physical Attacker
+Silicobra,Base,F,Physical Attacker
+Sinistea,Base,F,Special Attacker
+Sizzlipede,Base,F,Physical Attacker
+Skiddo,Base,F,Physical Attacker
+Skorupi,Base,F,Physical Attacker
+Skrelp,Base,F,Special Attacker
+Slowpoke,Base,F,Defensive
+Slowpoke,Galarian,F,Defensive
+Snivy,Base,F,Support
+Snorunt,Base,F,Support
+Snover,Base,F,Snow weather setter;Snow weather synergy
+Snubbull,Base,F,Physical Attacker
+Sobble,Base,F,Special Attacker
+Solosis,Base,F,Special Attacker
+Spheal,Base,F,Defensive
+Spoink,Base,F,Support
+Sprigatito,Base,F,Physical Attacker
+Spritzee,Base,F,Support
+Squirtle,Base,F,Defensive;Needs Speed Control
+Starly,Base,F,Physical Attacker
+Staryu,Base,F,Special Attacker;Has Speed Control
+Stufful,Base,F,Physical Attacker
+Stunky,Base,F,Physical Attacker
+Swablu,Base,F,Support
+Swinub,Base,F,Physical Attacker;Snow weather synergy
+Swirlix,Base,F,Support
+Tadbulb,Base,F,Special Attacker
+Tandemaus,Base,F,Support
+Teddiursa,Base,F,Physical Attacker
+Tentacool,Base,F,Defensive
+Tepig,Base,F,Physical Attacker
+Timburr,Base,F,Physical Attacker
+Tinkatink,Base,F,Support
+Tirtouga,Base,F,Physical Attacker;Rain weather synergy
+Toedscool,Base,F,Support
+Togepi,Base,F,Support
+Torchic,Base,F,Special Attacker;Sun weather synergy
+Totodile,Base,F,Physical Attacker
+Toxel,Base,F,Special Attacker
+Trapinch,Base,F,Physical Attacker
+Treecko,Base,F,Special Attacker;Has Speed Control
+Turtwig,Base,F,Physical Attacker
+Tyrunt,Base,F,Physical Attacker
+Varoom,Base,F,Physical Attacker
+Venipede,Base,F,Physical Attacker
+Voltorb,Base,F,Support;Has Speed Control
+Voltorb,Hisuian,F,Support
+Vullaby,Base,F,Defensive
+Wailmer,Base,F,Special Attacker
+Wattrel,Base,F,Special Attacker;Has Speed Control
+Whirlipede,Base,F,Physical Attacker
+Wingull,Base,F,Special Attacker;Rain weather synergy
+Wooper,Base,F,Defensive
+Wooper,Paldean,F,Defensive
+Yamask,Base,F,Defensive
+Yamask,Galarian,F,Defensive
+Yamper,Base,F,Support
+Zigzagoon,Galarian,F,Physical Attacker
+Zorua,Base,F,Special Attacker
+Zorua-Hisuian,Base,F,Special Attacker
+Aipom,Base,F-,Physical Attacker
+Azurill,Base,F-,Support
+Bellsprout,Base,F-,Special Attacker;Sun weather synergy
+Bergmite,Base,F-,Defensive
+Bidoof,Base,F-,Support
+Binacle,Base,F-,Physical Attacker
+Blipbug,Base,F-,Support
+Bonsly,Base,F-,Defensive
+Bounsweet,Base,F-,Support
+Bunnelby,Base,F-,Physical Attacker
+Burmy-Plant Cloak,Base,F-,Support
+Burmy-Sandy Cloak,Base,F-,Support
+Burmy-Trash Cloak,Base,F-,Support
+Cascoon,Base,F-,Defensive
+Caterpie,Base,F-,Needs Speed Control
+Cherubi,Base,F-,Special Attacker;Sun weather synergy
+Chikorita,Base,F-,Support;Defensive
+Chingling,Base,F-,Support
+Clamperl,Base,F-,Special Attacker
+Cleffa,Base,F-,Support
+Combee,Base,F-,Support
+Cosmoem,Base,F-,Defensive
+Cosmog,Base,F-,Support
+Cubchoo,Base,F-,Physical Attacker;Snow weather synergy
+Delcatty,Base,F-,Support
+Delibird,Base,F-,Support;Snow weather synergy
+Diglett,Base,F-,Physical Attacker;Has Speed Control
+Doduo,Base,F-,Physical Attacker
+Dottler,Base,F-,Defensive
+Drowzee,Base,F-,Support
+Ducklett,Base,F-,Support
+Ekans,Base,F-,Physical Attacker
+Elgyem,Base,F-,Special Attacker
+Feebas,Base,F-,Special Attacker
+Fidough,Base,F-,Support
+Finneon,Base,F-,Special Attacker
+Flabebe,Red Flower,F-,Support
+Flabebe,Yellow Flower,F-,Support
+Flabebe,Orange Flower,F-,Support
+Flabebe,Blue Flower,F-,Support
+Flabebe,White Flower,F-,Support
+Fomantis,Base,F-,Physical Attacker
+Glameow,Base,F-,Support
+Goldeen,Base,F-,Physical Attacker
+Gossifleur,Base,F-,Support
+Gothita,Base,F-,Support
+Gulpin,Base,F-,Defensive
+Happiny,Base,F-,Support;Defensive
+Hoothoot,Base,F-,Support
+Hoppip,Base,F-,Support
+Horsea,Base,F-,Special Attacker;Rain weather synergy
+Igglybuff,Base,F-,Support
+Kakuna,Base,F-,Defensive
+Krabby,Base,F-,Physical Attacker
+Kricketot,Base,F-,Physical Attacker
+Lechonk,Base,F-,Physical Attacker
+Ledyba,Base,F-,Support
+Lotad,Base,F-,Rain weather synergy
+Luvdisc,Base,F-,Support
+Magikarp,Base,F-,Needs Speed Control
+Maschiff,Base,F-,Physical Attacker
+Meowth,Base,F-,Support
+Meowth,Alolan,F-,Support
+Meowth,Galarian,F-,Physical Attacker
+Metapod,Base,F-,Defensive
+Milcery,Base,F-,Support
+Mime Jr.,Base,F-,Support
+Minccino,Base,F-,Physical Attacker
+Morelull,Base,F-,Support
+Nickit,Base,F-,Support
+Nidoran F,Base,F-,Special Attacker
+Nidoran M,Base,F-,Physical Attacker
+Nidorina,Base,F-,Defensive
+Nidorino,Base,F-,Physical Attacker
+Nincada,Base,F-,Physical Attacker
+Nosepass,Base,F-,Defensive
+Nymble,Base,F-,Physical Attacker
+Oddish,Base,F-,Special Attacker;Sun weather synergy
+Panpour,Base,F-,Special Attacker
+Pansage,Base,F-,Physical Attacker
+Pansear,Base,F-,Special Attacker
+Paras,Base,F-,Physical Attacker
+Patrat,Base,F-,Physical Attacker
+Pichu,Base,F-,Support
+Pidgey,Base,F-,Needs Speed Control
+Pidove,Base,F-,Physical Attacker
+Pikipek,Base,F-,Physical Attacker
+Pineco,Base,F-,Defensive
+Poliwag,Base,F-,Rain weather synergy
+Poochyena,Base,F-,Physical Attacker
+Psyduck,Base,F-,Special Attacker;Rain weather synergy
+Purrloin,Base,F-,Support
+Raticate,Base,F-,Physical Attacker
+Rattata,Base,F-,Physical Attacker
+Rattata,Alolan,F-,Physical Attacker
+Rellor,Base,F-,Support
+Remoraid,Base,F-,Special Attacker;Rain weather synergy
+Sandshrew,Base,F-,Physical Attacker
+Scatterbug,Base,F-,Support
+Seaking,Base,F-,Physical Attacker;Rain weather synergy
+Seedot,Base,F-,Physical Attacker;Sun weather synergy
+Seel,Base,F-,Defensive
+Sentret,Base,F-,Physical Attacker
+Sewaddle,Base,F-,Physical Attacker
+Shelmet,Base,F-,Defensive
+Shroodle,Base,F-,Support
+Silcoon,Base,F-,Defensive
+Skiploom,Base,F-,Support
+Skitty,Base,F-,Support
+Skwovet,Base,F-,Physical Attacker
+Slakoth,Base,F-,Physical Attacker
+Slugma,Base,F-,Special Attacker;Sun weather synergy
+Smoliv,Base,F-,Special Attacker
+Smoochum,Base,F-,Special Attacker
+Snom,Base,F-,Special Attacker
+Spearow,Base,F-,Physical Attacker
+Spewpa,Base,F-,Defensive
+Spinarak,Base,F-,Physical Attacker
+Spinda,Base,F-,Support
+Steenee,Base,F-,Support
+Sunkern,Base,F-,Special Attacker;Sun weather synergy
+Surskit,Base,F-,Special Attacker;Rain weather synergy
+Swadloon,Base,F-,Defensive
+Taillow,Base,F-,Physical Attacker
+Tarountula,Base,F-,Support
+Tranquill,Base,F-,Physical Attacker
+Trubbish,Base,F-,Defensive
+Tympole,Base,F-,Rain weather synergy
+Tynamo,Base,F-,Special Attacker
+Tyrogue,Base,F-,Physical Attacker
+Unown,Base,F-,Special Attacker
+Vanillish,Base,F-,Special Attacker;Snow weather synergy
+Vanillite,Base,F-,Special Attacker;Snow weather synergy
+Venonat,Base,F-,Support
+Weedle,Base,F-,Needs Speed Control
+Whismur,Base,F-,Special Attacker
+Wiglett,Base,F-,Physical Attacker
+Wimpod,Base,F-,Physical Attacker
+Woobat,Base,F-,Support
+Wooloo,Base,F-,Defensive
+Wurmple,Base,F-,Needs Speed Control
+Wynaut,Base,F-,Support
+Yungoos,Base,F-,Physical Attacker
+Zigzagoon,Base,F-,Support
+Zubat,Base,F-,Has Speed Control
+Abra,Base,F+,Special Attacker
+Axew,Base,F+,Physical Attacker
+Bagon,Base,F+,Physical Attacker
+Bayleef,Base,F+,Support;Defensive
+Beldum,Base,F+,Physical Attacker
+Brionne,Base,F+,Special Attacker
+Charcadet,Base,F+,Special Attacker
+Charmeleon,Base,F+,Special Attacker;Needs Speed Control;Sun weather synergy
+Croconaw,Base,F+,Physical Attacker
+Deino,Base,F+,Special Attacker
+Dragonair,Base,F+,Physical Attacker
+Dreepy,Base,F+,Physical Attacker
+Farfetch'd,Base,F+,Physical Attacker
+Ferroseed,Base,F+,Defensive
+Flaaffy,Base,F+,Special Attacker
+Floette,Red Flower,F+,Support
+Floette,Yellow Flower,F+,Support
+Floette,Orange Flower,F+,Support
+Floette,Blue Flower,F+,Support
+Floette,White Flower,F+,Support
+Gastly,Base,F+,Special Attacker
+Gible,Base,F+,Physical Attacker
+Gloom,Base,F+,Special Attacker;Sun weather synergy
+Goomy,Base,F+,Special Attacker
+Graveler,Base,F+,Physical Attacker;Sand weather synergy
+Graveler,Alolan,F+,Physical Attacker
+Grotle,Base,F+,Physical Attacker;Defensive
+Growlithe,Base,F+,Physical Attacker;Sun weather synergy
+Growlithe,Hisuian,F+,Physical Attacker;Sun weather synergy
+Honedge,Base,F+,Physical Attacker
+Ivysaur,Base,F+,Special Attacker;Needs Speed Control;Sun weather synergy
+Jangmo-o,Base,F+,Physical Attacker
+Jigglypuff,Base,F+,Support
+Kadabra,Base,F+,Special Attacker
+Kirlia,Base,F+,Support
+Kubfu,Base,F+,Physical Attacker
+Larvesta,Base,F+,Special Attacker
+Larvitar,Base,F+,Physical Attacker;Sand weather synergy
+Ledian,Base,F+,Support;Defensive
+Machoke,Base,F+,Physical Attacker
+Magnemite,Base,F+,Special Attacker
+Marill,Base,F+,Support
+Pidgeotto,Base,F+,Needs Speed Control
+Poliwhirl,Base,F+,Rain weather synergy
+Prinplup,Base,F+,Special Attacker
+Pupitar,Base,F+,Physical Attacker;Sand weather synergy
+Quilava,Base,F+,Special Attacker;Sun weather synergy
+Ralts,Base,F+,Support
+Riolu,Base,F+,Support
+Shelgon,Base,F+,Physical Attacker
+Trumbeak,Base,F+,Physical Attacker
+Vulpix,Base,F+,Special Attacker;Sun weather synergy
+Vulpix-Alolan,Base,F+,Special Attacker;Snow weather synergy
+Wartortle,Base,F+,Defensive;Needs Speed Control
+Weepinbell,Base,F+,Special Attacker;Sun weather synergy

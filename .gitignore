@@ -1,3 +1,22 @@
+# Notes
+_notes/
+
+# scripts
+_scripts/
+main.bat
+
+# output
+_output/
+
+# logs
+_logs/
+
+# misc
+common/datapacks/
+
+# VS Code
+.vscode/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
