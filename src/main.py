@@ -1,5 +1,7 @@
+import argparse
 import os
 import json
+import sys
 import time
 import traceback
 
@@ -18,84 +20,42 @@ from trainer_json import fix_trainers, open_all_trainer_json_files, remove_null_
 from consts import BUG, FAIRY, FIRE, FLYING, GHOST, NORMAL, STEEL
 from type import get_defensive_chart, test_type_chart
 
-def test_data(pokemon_database, collection_name):
-    # test inserting data
-    pokemon_database.create_collection(collection_name=collection_name)
-    print("insert example record")
-    example_species1 = apply_type_chart(
-        SpeciesChoice(
-            role=ROLE_SPECIAL_THREAT,
-            tier=A_MINUS_TIER,
-            minimum_level=36,
-            species="typhlosion",
-            primary_type=FIRE,
-            ability="blaze",
-        ),
-        defensive_type_chart=get_defensive_chart(type1=FIRE,ability="blaze")
-    )
-    pokemon_database.insert_record(record=example_species1, collection=collection_name)
-    example_species2 = apply_type_chart(
-        SpeciesChoice(
-            role=ROLE_SPECIAL_THREAT,
-            tier=A_PLUS_TIER,
-            minimum_level=36,
-            species="typhlosion",
-            form=HISUIAN_FORM,
-            primary_type=FIRE,
-            ability="blaze",
-            secondary_type=GHOST,
-        ),
-        defensive_type_chart=get_defensive_chart(type1=FIRE,type2=GHOST,ability="blaze")
-    )
-    pokemon_database.insert_record(record=example_species2, collection=collection_name)
-    example_species3 = apply_type_chart(
-        SpeciesChoice(
-            role=ROLE_SUPPORT,
-            tier=F_MINUS_TIER,
-            minimum_level=1,
-            species="caterpie",
-            primary_type=BUG,
-            ability="swarm",
-        ),
-        defensive_type_chart=get_defensive_chart(type1=BUG,ability="swarm")
-    )
-    pokemon_database.insert_record(record=example_species3, collection=collection_name)
-    pokemon_database.does_collection_exist()
-
-    # test data is found
-    species_list = pokemon_database.get_species_by_role_and_tier(role=ROLE_SUPPORT, level = 1)
-
 dirname = os.path.dirname(__file__)
 
 def main():
     print("Starting main")
+    
+    # get command line args
+    args = get_args()
+    import_move_descriptions = args.import_move_descriptions
+    import_species = args.import_species
+    generate_trainers = args.generate_trainers
+
     print("connecting Database")
     database = PokemonDatabase()
     try:
-        # write_move_descriptions_to_db(database=database)
+        # TODO pass paths to functions
+        if import_move_descriptions:
+            write_move_descriptions_to_db(database=database)
 
-        # # run this one first
-        # write_tier_list_to_db(database=database)
-
-        # # run this one second
-        # write_cobblemon_collection(database=database)
-
-        # write_species_collection(database=database)
-
-        # mega_stones =  import_mega_stones()
-        # write_mega_stones_to_db(database=database, mega_stones=mega_stones)
+        # this includes moves for every species
+        if import_species:
+            # run this one first
+            write_tier_list_to_db(database=database)
+            write_cobblemon_collection(database=database)
+            write_species_collection(database=database)
+            mega_stones =  import_mega_stones()
+            write_mega_stones_to_db(database=database, mega_stones=mega_stones)
   
-        
-        all_trainers = open_all_trainer_json_files()
-        timestamp = str(time.time())
-        for trainer in all_trainers:
-            trainer_file = generate_trainer(pokemon_database=database, trainer_shell=trainer.data)
-            # Write the trainer to a file
-            write_trainer_to_file(timestamp=timestamp, trainer_file=trainer_file, filename=trainer.filename)
-            # write_trainer_file(CobbleverseTrainerFile(filename=trainer.filename, data=new_trainer_data))
 
-        # remove_null_values()
-
+        if generate_trainers:
+            # TODO move methods into coach      
+            all_trainers = open_all_trainer_json_files()
+            timestamp = str(time.time())
+            for trainer in all_trainers:
+                trainer_file = generate_trainer(pokemon_database=database, trainer_shell=trainer.data)
+                # Write the trainer to a file
+                write_trainer_to_file(timestamp=timestamp, trainer_file=trainer_file, filename=trainer.filename)
 
         database.client.close()
 
@@ -106,6 +66,16 @@ def main():
         print(traceback.format_exc())
         raise e
         # pokemon_database.client.close()
+
+def get_args() -> argparse.Namespace:
+    print("collecting args")
+    parser = argparse.ArgumentParser(description="Main")
+    parser.add_argument('--import_move_descriptions', action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument('--import_species', action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument('--generate_trainers', action=argparse.BooleanOptionalAction, default=True)
+    args = parser.parse_args()
+    return args
+
 
 def write_mega_stones_to_db(database: PokemonDatabase, mega_stones: list[dict]):
     for mega_stone in mega_stones:
