@@ -30,6 +30,7 @@ def main():
     import_move_descriptions = args.import_move_descriptions
     import_species = args.import_species
     generate_trainers = args.generate_trainers
+    only_gym_leaders = args.only_gym_leaders
 
     print("connecting Database")
     database = PokemonDatabase()
@@ -50,7 +51,7 @@ def main():
 
         if generate_trainers:
             # TODO move methods into coach      
-            all_trainers = open_all_trainer_json_files()
+            all_trainers = open_all_trainer_json_files(only_gym_leaders=only_gym_leaders)
             timestamp = str(time.time())
             for trainer in all_trainers:
                 trainer_file = generate_trainer(pokemon_database=database, trainer_shell=trainer.data)
@@ -73,6 +74,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument('--import_move_descriptions', action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--import_species', action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--generate_trainers', action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument('--only_gym_leaders', action=argparse.BooleanOptionalAction, default=False)
     args = parser.parse_args()
     return args
 
