@@ -326,6 +326,11 @@ TYPE_LOCKED_TRAINERS = {
     "blaine": FIRE,
     "giovanni": GROUND,
 
+    "lorelei": ICE,
+    "bruno": FIGHTING,
+    "agatha": GHOST,
+    "lance": DRAGON,
+
     "falkner": FLYING,
     "bugsy": BUG,
     "whitney": NORMAL,
