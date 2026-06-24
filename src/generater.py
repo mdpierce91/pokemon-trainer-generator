@@ -2,7 +2,7 @@ import math
 import random
 import traceback
 
-from data import get_defenses_score
+from data import get_defenses_score, score_move_power
 from models.cobblemon_form import CobblemonSpecies
 from models.cobbleverse_trainer import CobbleverseAI, CobbleverseAIData, CobbleverseTrainer, TeamMember
 from pokemon_database import PokemonDatabase
@@ -261,10 +261,10 @@ def choose_species_for_trainer(database: PokemonDatabase, coach: TeamCoach, trai
             new_member = TeamMember(
                 species=chosen_pokemon["species"],
                 ability=chosen_pokemon["ability"],
-                form=chosen_pokemon["form"],
+                form=chosen_pokemon["form"] if chosen_pokemon["form"] != BASE_FORM else None,
                 gender="FEMALE",
                 level=role_choice.level,
-                heldItem=coach.chosen_item,
+                heldItem=[coach.chosen_item],
                 moveset=moves_list,
                 gimmicks=None,
                 nature=nature,
@@ -443,61 +443,75 @@ def choose_moves_for_pokemon(database: PokemonDatabase, chosen_pokemon: dict, co
             if attack_moves_count == 0 and stab_attacks:
                 # choose a stab move if we don't have any attacking moves yet
                 chosen_move = choose_move_from_set(
+                    coach=coach,
                     move_set=stab_attacks, 
                     chosen_moves=chosen_moves, 
                     chosen_pokemon=chosen_pokemon, 
+                    cobblemon_species=cobblemon_species,
                     role_choice=role_choice, 
                 )
                 attack_moves_count += 1
             else:
                 chosen_move = choose_move_from_set(
+                    coach=coach,
                     move_set=stab_attacks | coverage_attacks, 
                     chosen_moves=chosen_moves, 
                     chosen_pokemon=chosen_pokemon, 
+                    cobblemon_species=cobblemon_species,
                     role_choice=role_choice, 
                 )
                 attack_moves_count += 1
 
-        elif TAG_HAS_SPEED_CONTROL in tags and speed_control_moves == 0 and speed_control_moves:
+        elif TAG_HAS_SPEED_CONTROL in tags and speed_control_moves_count == 0 and speed_control_moves:
             # choose a speed control move if we don't have one yet and there are some available
             chosen_move = choose_move_from_set(
+                coach=coach,
                 move_set=speed_control_moves, 
                 chosen_moves=chosen_moves, 
                 chosen_pokemon=chosen_pokemon, 
+                cobblemon_species=cobblemon_species,
                 role_choice=role_choice, 
             )
             speed_control_moves_count += 1
         elif attack_moves_count == 0 and stab_attacks:
             # choose a stab move if we don't have any attacking moves yet
             chosen_move = choose_move_from_set(
+                coach=coach,
                 move_set=stab_attacks, 
                 chosen_moves=chosen_moves, 
                 chosen_pokemon=chosen_pokemon, 
+                cobblemon_species=cobblemon_species,
                 role_choice=role_choice, 
             )
             attack_moves_count += 1
         elif attack_moves_count == 0 and coverage_attacks:
             # choose a coverage move if for some reason we don't have any attacking move or stab options
             chosen_move = choose_move_from_set(
+                coach=coach,
                 move_set=coverage_attacks, 
                 chosen_moves=chosen_moves, 
                 chosen_pokemon=chosen_pokemon, 
+                cobblemon_species=cobblemon_species,
                 role_choice=role_choice, 
             )
             attack_moves_count += 1
         elif role_choice.role == ROLE_SUPPORT and support_moves:
             chosen_move = choose_move_from_set(
+                coach=coach,
                 move_set=support_moves, 
                 chosen_moves=chosen_moves, 
                 chosen_pokemon=chosen_pokemon, 
+                cobblemon_species=cobblemon_species,
                 role_choice=role_choice, 
             )
             support_moves_count += 1
         else:
             chosen_move = choose_move_from_set(
+                coach=coach,
                 move_set=stab_attacks|coverage_attacks|support_moves|speed_control_moves, 
                 chosen_moves=chosen_moves, 
                 chosen_pokemon=chosen_pokemon, 
+                cobblemon_species=cobblemon_species,
                 role_choice=role_choice, 
             )
 
@@ -511,9 +525,11 @@ def choose_moves_for_pokemon(database: PokemonDatabase, chosen_pokemon: dict, co
     if len(chosen_moves) < 4:
         for i in range(4):
             new_move = choose_move_from_set(
+                coach=coach,
                 move_set=stab_attacks|coverage_attacks|support_moves|speed_control_moves,
                 chosen_moves=chosen_moves, 
                 chosen_pokemon=chosen_pokemon, 
+                cobblemon_species=cobblemon_species,
                 role_choice=role_choice, 
             )
             if new_move:
@@ -526,6 +542,7 @@ def choose_moves_for_pokemon(database: PokemonDatabase, chosen_pokemon: dict, co
             # if move_name == 'tailwind':
             #     # TODO: tailwind
             #     pass
+            # TODO exceptions for scarf and good scarf moves
             if move_description.get("category", None) == STATUS_CATEGORY:
                 # choose a different move if we have at least one status move
                 coach.chosen_item = choose_item(
@@ -551,9 +568,9 @@ def format_pokemon_for_trainer(database, chosen_pokemon, moves_list, item, coach
     pass
             
 
-def choose_move_from_set(move_set: dict, chosen_moves: dict, chosen_pokemon: dict, role_choice: RoleChoice):
+def choose_move_from_set(coach: TeamCoach, move_set: dict, chosen_moves: dict, chosen_pokemon: dict, cobblemon_species: CobblemonSpecies, role_choice: RoleChoice):
     weighted_options = {}
-    default_weight = 100
+    default_weight = 1000
     # # spread attacks
     # spread_attacks = {}
     # # hits partner
@@ -577,13 +594,30 @@ def choose_move_from_set(move_set: dict, chosen_moves: dict, chosen_pokemon: dic
     secondary_type = chosen_pokemon.get("secondary_type", None)
     pokemon_types.add(primary_type)
     pokemon_types.add(secondary_type)
+    chosen_ability = chosen_pokemon.get('ability', None)
 
-    base_stats = chosen_pokemon.get("baseStats", {})
-    atk_stat = float(base_stats.get("attack", 50))
-    spa_stat = float(base_stats.get("special_attack", 50))
+    form_base_stats = cobblemon_species.form_stats(chosen_pokemon.get("form", None))
+    atk_stat = float(form_base_stats.attack)
+    spa_stat = float(form_base_stats.special_attack)
     
     atk_spa_ratio = atk_stat/spa_stat
     spa_atk_ratio = spa_stat/atk_stat
+
+    effective_speed = form_base_stats.speed
+    if coach.chosen_item == CHOICE_SCARF:
+        effective_speed *= 1.5
+
+
+    chosen_types = {}
+    for chosen_name, chosen_description in chosen_moves.items():
+        chosen_type = chosen_description.get("type", None)
+        chosen_power = chosen_description.get("basePower", 0)
+        if chosen_type and chosen_power > 0:
+            if chosen_type in chosen_types:
+                chosen_types[chosen_type] *= 10
+            else:
+                chosen_types[chosen_type] = default_weight
+    
 
     # check every move
     for move_name, move_description in move_set.items():
@@ -601,51 +635,49 @@ def choose_move_from_set(move_set: dict, chosen_moves: dict, chosen_pokemon: dic
 
 
         move_score = default_weight
-        power = move_description.get("power", 0)
-
-        # greatly reduce wrong category of moves
+        power = move_description.get("basePower", 0)
+        move_type = move_description.get("type", None)
         move_category = move_description.get("category", None)
-        if role_choice.role == ROLE_PHYSICAL_THREAT and move_category == SPECIAL_CATEGORY and role_choice.level > 25:
-            move_score = 1
-        elif role_choice.role == ROLE_SPECIAL_THREAT and move_category == PHYSICAL_CATEGORY and role_choice.level > 25:
-            move_score = 1         
-
-        if role_choice.role != ROLE_SUPPORT and move_category == STATUS_CATEGORY:
-            move_score *= 0.25
-        # special cases
-        if move_name == "trickroom":
-            # TODO: if the pokemon is slow, prefer trick room. if the pokemon is fast, avoid trick room
-            move_score *= 4
-        if move_name == "tailwind":
-            move_score *= 4
-        if move_name == "wideguard":
-            move_score *= 4
+        # does not include self stat changes or secondary effect changes
+        stat_changes = move_description.get("boosts", None)
 
         # weight moves based on power
-        if power > 0:
-            if power > 100:
-                move_score += 2 * default_weight
-            elif power > 70:
-                move_score += default_weight
-            elif power >= 40:
-                pass
-            else:
-                move_score -= default_weight/2
+        if move_category == STATUS_CATEGORY or power > 0:
+            power_scale = default_weight
+            if role_choice.role != ROLE_SUPPORT:
+                power_scale = default_weight * 4
+
+            power_ratio = score_move_power(power)
+            move_score += power_scale * power_ratio
+            # if power > 100:
+            #     move_score += 2 * power_scale
+            # elif power > 70:
+            #     move_score += power_scale
+            # elif power >= 40:
+            #     pass
+            # else:
+            #     move_score -= default_weight/2
 
             # increase weight of priority attacks
             if move_description.get("priority", 0) > 0:
-                move_score *= 4
+                move_score *= 3
 
-            # reduce weight of moves of the same type already in moveset(only for attacks)
-            move_type = move_description.get("type", None)
-            if move_type:
-                for existing_move_name, existing_move_description in chosen_moves.items():
-                    if existing_move_description.get("type", None) == move_type:
-                        move_score *= 0.25
+            # reduce weight of recoil attacks
+            recoil_values = move_description.get("recoil", [])
+            if len(recoil_values) > 0:
+                move_score *= 0.9
+
+            # reduce weight of static recoil attacks
+            if move_description.get("mindBlownRecoil", None):
+                move_score *= 0.85
+
+            # reduce weight of self KO moves
+            if not move_description.get("selfdestruct", None):
+                move_score *= 0.1
             
             # increase weight of stab attacks
             if move_type in pokemon_types:
-                move_score *= 1.5
+                move_score *= 2
             
             # if mixed or support ratio by pref stat
             if move_category == PHYSICAL_CATEGORY:
@@ -653,18 +685,45 @@ def choose_move_from_set(move_set: dict, chosen_moves: dict, chosen_pokemon: dic
             elif move_category == SPECIAL_CATEGORY:
                 move_score *= spa_atk_ratio 
 
+            # TODO move exceptions
+            # TODO foul play
+        elif move_category == STATUS_CATEGORY or power == 0:
+            
+            # stat changes
+            if stat_changes:
+                # reduce benefit of slow pokemon
+                if effective_speed <= HIGH_SPEED_CUTOFF:
+                    move_score *= 0.25
+
+                move_score *= abs(stat_changes.get("atk", 1))
+                move_score *= abs(stat_changes.get("spa", 1))
+                move_score *= abs(stat_changes.get("def", 1))
+                move_score *= abs(stat_changes.get("spd", 1))
+                move_score *= abs(stat_changes.get("spe", 0))
+                # score speed changes much higher
+                if "spd" in move_score:
+                    move_score *= 4
+            # TODO more status checks
+            
+                
+
+        else:
+            print(f'found type of move outside of normal catgories: {move_category} with power: {power}')
+
+        
+        ## Multipliers (order doesn't matter)
+        if role_choice.role != ROLE_SUPPORT and move_category == STATUS_CATEGORY:
+            move_score *= 0.25
+
         # flags weighting
         flags = move_description.get("flags", {})
         for flag, value in flags.items():
             # recharge moves ie. Hyper Beam
             if flag == "recharge":
-                move_score *= 0.5
+                move_score *= 0.25
             # charge moves ie. Solar Beam
             elif flag == "charge":
-                move_score *= 0.25
-
-            
-
+                move_score *= 0.1
 
         target = move_description.get("target", None)
         # weight spread moves
@@ -682,7 +741,7 @@ def choose_move_from_set(move_set: dict, chosen_moves: dict, chosen_pokemon: dic
 
         # weight moves based on accuracy
         # if the pokemon has no guard or compound eyes, ignore accuracy scaling
-        if chosen_pokemon['ability'] != "noguard" and chosen_pokemon['ability'] != "compoundeyes":
+        if chosen_ability != "noguard" and chosen_ability != "compoundeyes":
             accuracy = move_description.get("accuracy", 100)
             if accuracy < 80:
                 move_score = 1
@@ -714,6 +773,39 @@ def choose_move_from_set(move_set: dict, chosen_moves: dict, chosen_pokemon: dic
                 # bad effect
                 cumulative_effect *= 0.875 * (100.0/float(self_effect_chance)) * float(abs(value))
         move_score *= cumulative_effect
+
+
+
+        ## Static changes (order matters)
+        # reduce weight of moves of the same type already in moveset(only for attacks)
+        if power > 0:
+            if move_type and move_type in chosen_types:
+                # subtract value from chosen type dict from score
+                move_score = max(1, move_score - chosen_types[move_type])
+            # old version
+            # if move_type:
+            #     for existing_move_name, existing_move_description in chosen_moves.items():
+            #         if existing_move_description.get("type", None) == move_type:
+            #             move_score *= 0.25
+
+        # don't choose unusable moves
+        if move_name in BAD_MOVES_SET:
+            move_score = 1
+        
+        # greatly reduce wrong category of moves
+        if role_choice.role == ROLE_PHYSICAL_THREAT and move_category == SPECIAL_CATEGORY and role_choice.level > 25:
+            move_score = 1
+        elif role_choice.role == ROLE_SPECIAL_THREAT and move_category == PHYSICAL_CATEGORY and role_choice.level > 25:
+            move_score = 1     
+            
+        # special cases
+        if move_name == "trickroom":
+            # TODO: if the pokemon is slow, prefer trick room. if the pokemon is fast, avoid trick room
+            move_score *= 4
+        if move_name == "tailwind":
+            move_score *= 4
+        if move_name == "wideguard":
+            move_score *= 4
 
         weighted_options[move_name] = max(int(move_score), 1)
 
