@@ -15,7 +15,7 @@ from data import apply_type_chart, chart_pokemon_defenses, create_from_cobblemon
 from output import write_trainer_to_file
 from pokemon_database import PokemonDatabase
 from pokemon_json import import_all_pokemon, import_mega_stones
-from tier_list import write_tier_list_to_db
+from tier_list import clean_cobblemon_db, clean_species_db, write_tier_list_to_db
 from trainer_json import fix_trainers, open_all_trainer_json_files, remove_null_values
 from consts import BUG, FAIRY, FIRE, FLYING, GHOST, NORMAL, STEEL
 from type import get_defensive_chart, test_type_chart
@@ -29,8 +29,12 @@ def main():
     args = get_args()
     import_move_descriptions = args.import_move_descriptions
     import_species = args.import_species
+    clean_database = args.clean_database
     generate_trainers = args.generate_trainers
     only_gym_leaders = args.only_gym_leaders
+    search_trainer = args.search_trainer
+    if search_trainer is str:
+        search_trainer = search_trainer.lower()
 
     print("connecting Database")
     database = PokemonDatabase()
@@ -47,11 +51,15 @@ def main():
             write_species_collection(database=database)
             mega_stones =  import_mega_stones()
             write_mega_stones_to_db(database=database, mega_stones=mega_stones)
+
+        if clean_database:
+            clean_cobblemon_db(database=database)
+            clean_species_db(database=database)
   
 
         if generate_trainers:
             # TODO move methods into coach      
-            all_trainers = open_all_trainer_json_files(only_gym_leaders=only_gym_leaders)
+            all_trainers = open_all_trainer_json_files(only_gym_leaders=only_gym_leaders, search_keyword=search_trainer)
             timestamp = str(time.time())
             for trainer in all_trainers:
                 trainer_file = generate_trainer(pokemon_database=database, trainer_shell=trainer.data)
@@ -73,8 +81,11 @@ def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Main")
     parser.add_argument('--import_move_descriptions', action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--import_species', action=argparse.BooleanOptionalAction, default=False)
-    parser.add_argument('--generate_trainers', action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument('--clean_database', action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument('--generate_trainers', action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--only_gym_leaders', action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument('--search_trainer', default=None)
+    
     args = parser.parse_args()
     return args
 

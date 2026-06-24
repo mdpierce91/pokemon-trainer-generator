@@ -2,6 +2,8 @@ import csv
 import os
 import traceback
 
+from bson import ObjectId
+
 from data import process_name
 from pokemon_database import PokemonDatabase
 from consts import *
@@ -50,6 +52,26 @@ def write_tier_list_to_db(database: PokemonDatabase):
                 print(f"failed to add pokemon to list in {i} - {line}")
                 print(e)
                 print(traceback.format_exc())
+
+def clean_cobblemon_db(database: PokemonDatabase):
+    records = database.find_all_records(collection_name=database.cobblemon_collection, query={})
+    for record in records:
+        id = ObjectId(record["_id"])
+        preprocessed_name = record["name"]
+        processed_name = process_name(preprocessed_name)
+        if processed_name != preprocessed_name:
+            record["name"] = processed_name
+            database.insert_json_record(collection_name=database.cobblemon_collection,key={ '_id': id }, data=record)
+
+def clean_species_db(database: PokemonDatabase):
+    records = database.find_all_records(collection_name=database.species_choice, query={})
+    for record in records:
+        id = ObjectId(record["_id"])
+        preprocessed_name = record["species"]
+        processed_name = process_name(preprocessed_name)
+        if processed_name != preprocessed_name:
+            record["species"] = processed_name
+            database.insert_json_record(collection_name=database.species_choice,key={ '_id': id }, data=record)
 
 def check_if_invalid_name_exists(database: PokemonDatabase, invalid_name, updated_name):
     if invalid_name and invalid_name != updated_name:

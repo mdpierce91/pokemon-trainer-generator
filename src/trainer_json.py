@@ -6,8 +6,8 @@ from data import process_name
 from models.cobbleverse_trainer import CobbleverseTrainer, CobbleverseTrainerFile
 from trainers import get_type_lock
 
-
-def open_all_trainer_json_files(only_gym_leaders=False, limit = None) -> list[CobbleverseTrainerFile]:
+# search_keyword is exclusive from gym leaders
+def open_all_trainer_json_files(only_gym_leaders=False, limit = None, search_keyword = None) -> list[CobbleverseTrainerFile]:
     trainer_list: list[CobbleverseTrainerFile] = []
     type_locked_trainers: list[CobbleverseTrainerFile] = []
     count = 0
@@ -28,7 +28,10 @@ def open_all_trainer_json_files(only_gym_leaders=False, limit = None) -> list[Co
                     with open(full_path, 'r') as json_data:
                         trainer_data = CobbleverseTrainer.model_validate_json(json_data.read())
                         trainer = CobbleverseTrainerFile(filename=filename, data=trainer_data)
-                        trainer_list.append(trainer)
+                        # TODO implement combination of search and gym leaders
+                        # if search is passed, only add it if it succeed, otherwise add
+                        if not search_keyword or search_keyword in trainer_data.name.literal.lower():
+                            trainer_list.append(trainer)
                         type_lock = get_type_lock(trainer.data.name.literal)
                         if not type_lock and trainer.data.identity:
                             type_lock = get_type_lock(trainer.data.identity)
@@ -40,7 +43,7 @@ def open_all_trainer_json_files(only_gym_leaders=False, limit = None) -> list[Co
                 print(f'Failed to open trainer file {filename}')
                 print(e)
                 raise e
-        if only_gym_leaders:
+        if not search_keyword and only_gym_leaders:
             return type_locked_trainers
         return trainer_list
     except Exception as e:
