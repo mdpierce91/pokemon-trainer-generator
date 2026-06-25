@@ -823,4 +823,5 @@ BAD_MOVES_SET = {
     "growl",
     "futuresight",
     "upperhand",
+    "dreameater",
 }
