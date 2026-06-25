@@ -16,7 +16,7 @@ from output import write_trainer_to_file
 from pokemon_database import PokemonDatabase
 from pokemon_json import import_all_pokemon, import_mega_stones
 from tier_list import clean_cobblemon_db, clean_species_db, write_tier_list_to_db
-from trainer_json import fix_trainers, open_all_trainer_json_files, remove_null_values
+from trainer_json import fix_trainers, open_all_trainer_json_files
 from consts import BUG, FAIRY, FIRE, FLYING, GHOST, NORMAL, STEEL
 from type import get_defensive_chart, test_type_chart
 

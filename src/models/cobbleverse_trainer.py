@@ -1,5 +1,5 @@
 
-from pydantic import BaseModel
+from pydantic import AliasPath, BaseModel, Field
 
 
 class TrainerName(BaseModel):
@@ -28,6 +28,8 @@ class CobbleverseItem(BaseModel):
 class PokemonStats(BaseModel):
     hp: int | None = None
     atk: int | None = None
+    # def is a protected name in python so we need an alias here
+    defence: int | None = Field(serialization_alias='def',default=None,validation_alias=AliasPath('def'))
     spa: int | None = None
     spd: int | None = None
     spe: int | None = None

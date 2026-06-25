@@ -76,37 +76,7 @@ def fix_trainers(existing_trainers_path: str):
                         print(f'replacing {original_name} with {processed_name}')
             
             with open(full_path, 'w') as file_to_overwrite:
-                json.dump(trainer_data.model_dump(exclude_unset=True, exclude_none=True), file_to_overwrite, indent=4, ensure_ascii=False)
-
-
-
-def remove_null_values():
-    timestamp = time.time()
-    dirname = os.path.dirname(__file__)
-    directory_path = os.path.join(dirname, '..\\_output\\datapack\\1782005192.733301\\data\\rctmod\\trainers\\')
-    directory_write_path = os.path.join(dirname, f'..\\_output\\datapack\\{timestamp}\\data\\rctmod\\trainers\\')
-
-    directory = os.fsencode(directory_path)
-
-    for file in os.listdir(directory):
-        filename = os.fsdecode(file)
-        if filename.endswith(".json"):
-            full_path = os.path.join(dirname, directory_path, filename)
-            print(f'full path: {full_path}')
-            trainer = None
-            with open(full_path, 'r') as json_data:
-                print(f"opened file {filename} to clean")
-                dirty_trainer = json.load(json_data)
-                trainer = clean_nones(dirty_trainer)
-                print(f"cleaned {filename}")
-
-            write_path = os.path.join(dirname, directory_write_path, filename)
-            abs_path = os.path.abspath(write_path)
-            os.makedirs(os.path.dirname(abs_path), exist_ok=True)            
-            with open(write_path, 'w') as file_to_overwrite:
-                print(f"writing cleaned {filename}")
-                json.dump(trainer, file_to_overwrite, indent=4)
-
+                json.dump(trainer_data.model_dump(by_alias=True, exclude_unset=True, exclude_none=True), file_to_overwrite, indent=4, ensure_ascii=False)
 
 def clean_nones(value):
     """
