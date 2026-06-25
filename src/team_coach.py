@@ -31,6 +31,7 @@ class TeamCoach():
         'has_rain',
         'has_sand',
         'has_snow',
+        'has_mega',
         'needs_sun',
         'needs_rain',
         'needs_sand',
@@ -63,6 +64,7 @@ class TeamCoach():
         self.has_rain = False
         self.has_sand = False
         self.has_snow = False
+        self.has_mega = False
         self.needs_sun = 0
         self.needs_rain = 0
         self.needs_sand = 0
@@ -106,6 +108,10 @@ class TeamCoach():
         return type_lock
 
     def update_tags(self, new_team_member: SpeciesChoice, role:str):
+        
+        # if a mega form is added, update coach.has_mega
+        if 'mega' in new_team_member.get('form', BASE_FORM):
+            self.has_mega = True
         self.has_rain = self.has_rain or new_team_member.get(TAG_HAS_RAIN, False)
         self.has_sand = self.has_sand or new_team_member.get(TAG_HAS_SAND, False)
         self.has_snow = self.has_snow or new_team_member.get(TAG_HAS_SNOW, False)
@@ -278,6 +284,9 @@ class TeamCoach():
 
                 
                 matches = self.remove_current_team_from_matches(team=team,matches=matches)
+
+                if self.has_mega:
+                    matches = self.remove_megas(matches=matches)
                 
                 # if gym leader, need to filter pokemon with type bias
                 if self.type_lock:
@@ -293,6 +302,8 @@ class TeamCoach():
                             max_tier=tier_range.high,
                             min_tier=tier_range.low
                         )
+                        if self.has_mega:
+                            mixed_biased_matches = self.remove_megas(matches=matches)
 
                     if mixed_biased_matches and len(mixed_biased_matches):
                         matches = mixed_biased_matches
@@ -1078,3 +1089,21 @@ class TeamCoach():
         # choose from weighted options
         chosen_move_name = random.choices(population=list(weighted_options.keys()), weights=list(weighted_options.values()))[0]
         return move_set[chosen_move_name]  
+
+
+    def remove_megas(self, matches: list):
+        """Removes mega forms from the list of matches.
+
+        Args:
+            matches (list): list of matches to remove megas from
+
+        Returns:
+            _type_: list of matches without mega forms
+        """
+        no_megas = []
+        for match in matches:
+            if 'mega' in match.get('form', BASE_FORM):
+                continue
+            else:
+                no_megas.append(match)
+        return no_megas
