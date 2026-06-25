@@ -153,15 +153,15 @@ def process_pokemon_data_for_database(data: dict):
     evolutions_name_key = 'result'
     try:
         # lower name
-        data[name_key] = process_value(data[name_key])
+        data[name_key] = process_name(data[name_key])
         # lower forms names
         if forms_key in data:
             for index, form in enumerate(data[forms_key]):
-                data[forms_key][index][forms_name_key] = process_value(data[forms_key][index][forms_name_key])
+                data[forms_key][index][forms_name_key] = process_name(data[forms_key][index][forms_name_key])
         # evolution names
         if evolutions_key in data:
             for index, evolution in enumerate(data[evolutions_key]):
-                data[evolutions_key][index][evolutions_name_key] = process_value(data[evolutions_key][index][evolutions_name_key])
+                data[evolutions_key][index][evolutions_name_key] = process_name(data[evolutions_key][index][evolutions_name_key])
 
         return data
 
@@ -174,15 +174,15 @@ def process_pokemon_data_for_database(data: dict):
 def process_cobblemon_data_for_database(data: CobblemonSpecies):
     try:
         # lower name
-        data.name = process_value(data.name)
+        data.name = process_name(data.name)
         # lower forms names
         if data.forms:
             for index, form in enumerate(data.forms):
-                data.forms[index].name = process_value(form.name)
+                data.forms[index].name = process_name(form.name)
         # evolution names
         if data.evolutions:
             for index, evolution in enumerate(data.evolutions):
-                data.evolutions[index].result = process_value(evolution.result)
+                data.evolutions[index].result = process_name(evolution.result)
 
         return data
 
@@ -202,7 +202,7 @@ def process_move_data_for_database(json_key:str, move_info: dict):
         # add display name
         move_info[display_name_key] = move_info[name_key]
         # swap name to key from json
-        move_info[name_key] = process_value(json_key)
+        move_info[name_key] = process_name(json_key)
         # type
         move_info[type_key] = process_value(move_info[type_key])
         # category
