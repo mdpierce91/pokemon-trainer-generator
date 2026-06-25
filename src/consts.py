@@ -47,6 +47,22 @@ DEFENSE_CHART = {
     FAIRY: {FIRE: 0.5, POISON: 2.0, FIGHTING: 0.5, BUG: 0.5, DRAGON: 0.0, DARK: 0.5, STEEL: 2.0}
 }
 
+# status
+STATUS_SLEEP = 'slp'
+STATUS_POISON = 'psn'
+STATUS_PARALYSIS = 'par'
+STATUS_TOXIC = 'tox'
+STATUS_BURN = 'brn'
+
+STATUS_VALUE_MULTIPLIERS = {
+    STATUS_SLEEP: 2,
+    STATUS_POISON: 1.1,
+    STATUS_PARALYSIS: 1.5,
+    STATUS_TOXIC: 1.2,
+    STATUS_BURN: 1.5,
+}
+
+
 # these aren't consistantly used
 # HP = 'hp'
 # ATTACK = 'atk'
@@ -541,6 +557,62 @@ NO_STATUS_ITEMS = {
 }
 
 HIGH_SPEED_CUTOFF = 120
+LOW_SPEED_CUTOFF = 80
+
+MOVES_WEIGHT_BY_NAME: dict[str,float] = {
+    'encore': 1.5,
+    'disable': 1.5,
+    'yawn': STATUS_VALUE_MULTIPLIERS[STATUS_SLEEP],
+    'taunt': 2,
+    'reflect': 3,
+    'lightscreen': 3,
+
+}
+
+TAG_MOVE_MULTIPLIERS = {
+    TAG_HAS_SNOW: {
+        'aurora veil': 5,
+        'blizzard': 2,
+        'solarbeam': 0.5,
+        'solarblade': 0.5,
+        'moonlight': 0.5,
+        'morningsun': 0.5,
+        'synthesis': 0.5,
+    },
+    TAG_HAS_RAIN: {
+        'aurora veil': 0.001,
+        'hurricane': 1.43,
+        'thunder': 1.25,
+        'bleakwindstorm': 1.25,
+        'solarbeam': 0.5,
+        'solarblade': 0.5,
+        'moonlight': 0.5,
+        'morningsun': 0.5,
+        'synthesis': 0.5,
+    },
+    TAG_HAS_SUN: {
+        'aurora veil': 0.001,
+        'solarbeam': 3,
+        'solarblade': 3,
+        'hurricane': 0.5,
+        'thunder': 0.5,
+    },
+    TAG_HAS_SAND: {
+        'aurora veil': 0.001,
+        'solarbeam': 0.5,
+        'solarblade': 0.5,
+        'moonlight': 0.5,
+        'morningsun': 0.5,
+        'synthesis': 0.5,
+        'shore up': 1.5,
+
+    }
+
+}
+
+SNOW_MULTIPLIERS = {
+    
+}
 
 BAD_MOVES_SET = {
     # TODO I don't think these belong here but might need specific code to implement their value
@@ -552,6 +624,7 @@ BAD_MOVES_SET = {
     "recycle",
     "sleeptalk",
     "soak",
+    "imprison",
 
     # bad moves
     "psywave",
@@ -749,7 +822,5 @@ BAD_MOVES_SET = {
     "leer",
     "growl",
     "futuresight",
-
-    # bugged
-    "upperhand"
+    "upperhand",
 }
