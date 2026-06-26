@@ -544,6 +544,7 @@ TYPE_BOOSTING_ITEMS = {
     STEEL: 'metal_coat', 
     FAIRY: 'fairy_feather',
 }
+
 NO_STATUS_ITEMS = {
     "choice_band",
     "choice_specs",

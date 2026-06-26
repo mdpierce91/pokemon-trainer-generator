@@ -780,6 +780,7 @@ class TeamCoach():
         default_weight = 1000
         attackers_weight_attacks = 6
         supports_weight_status = 3
+        inverted_type_boosting_items = {v: k for k, v in TYPE_BOOSTING_ITEMS.items()}
 
         pokemon_types = set()
         tags_set = set(tags)
@@ -953,7 +954,10 @@ class TeamCoach():
                     move_score *= NORMAL_BOOSTING_ABILITIES[chosen_ability]
                 elif move_type == NORMAL:
                     move_score *= 0.5    
-                
+
+                # if pokemon is holding a type boosting move, increase the weight of that type of move
+                if self.chosen_item in inverted_type_boosting_items and inverted_type_boosting_items[self.chosen_item] == move_type:
+                    move_score *= 1.3                
 
                 # increase weight of priority attacks
                 if move_description.get("priority", 0) > 0:
@@ -984,7 +988,7 @@ class TeamCoach():
                 
                 # increase weight of stab attacks
                 if move_type in pokemon_types:
-                    move_score *= 2
+                    move_score *= 1.5
                 
                 # if mixed or support ratio by pref stat
                 if move_category == PHYSICAL_CATEGORY:
