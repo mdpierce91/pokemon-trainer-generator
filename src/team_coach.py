@@ -8,6 +8,7 @@ from models.cobbleverse_trainer import CobbleverseTrainer, TeamMember
 from consts import *
 from data import get_defenses_score, score_move_power
 from models.species_choice import SpeciesChoice
+from moves import BAD_MOVES_SET, HITS_PARTNER_MOVES, MOVES_WEIGHT_BY_NAME, PROTECT_LIKE, SINGLE_TARGET_MOVES, SPEED_CONTROL_MOVES, SPREAD_MOVES, STATUS_VALUE_MULTIPLIERS
 from pokemon_database import PokemonDatabase
 from models.role_choice import RoleChoice
 from special_species import SpecialSpecies
@@ -107,24 +108,26 @@ class TeamCoach():
             type_lock = get_type_lock(trainer_shell.identity)
         return type_lock
 
-    def update_tags(self, new_team_member: SpeciesChoice, role:str):
+    def update_tags(self, chosen_pokemon: SpeciesChoice, new_team_member: TeamMember, role:str):
         
         # if a mega form is added, update coach.has_mega
-        if 'mega' in new_team_member.get('form', BASE_FORM):
+        if 'mega' in chosen_pokemon.get('form', BASE_FORM):
             self.has_mega = True
-        self.has_rain = self.has_rain or new_team_member.get(TAG_HAS_RAIN, False)
-        self.has_sand = self.has_sand or new_team_member.get(TAG_HAS_SAND, False)
-        self.has_snow = self.has_snow or new_team_member.get(TAG_HAS_SNOW, False)
-        self.has_sun = self.has_sun or new_team_member.get(TAG_HAS_SUN, False)
-        self.has_speed_control = self.has_speed_control or new_team_member.get(TAG_HAS_SPEED_CONTROL, False)
-        self.has_trick_room = self.has_trick_room or new_team_member.get(TAG_HAS_TRICK_ROOM, False)
-        if new_team_member.get(TAG_NEEDS_SUN, False):
+        # if new member has speed control update has speed control
+        if not self.has_speed_control and len(list(set(new_team_member.moveset) & set(SPEED_CONTROL_MOVES.keys()))) > 0:
+            self.has_speed_control = True
+        self.has_rain = self.has_rain or chosen_pokemon.get(TAG_HAS_RAIN, False)
+        self.has_sand = self.has_sand or chosen_pokemon.get(TAG_HAS_SAND, False)
+        self.has_snow = self.has_snow or chosen_pokemon.get(TAG_HAS_SNOW, False)
+        self.has_sun = self.has_sun or chosen_pokemon.get(TAG_HAS_SUN, False)
+        self.has_trick_room = self.has_trick_room or chosen_pokemon.get(TAG_HAS_TRICK_ROOM, False)
+        if chosen_pokemon.get(TAG_NEEDS_SUN, False):
             self.needs_sun += 1
-        elif new_team_member.get(TAG_NEEDS_RAIN, False):
+        elif chosen_pokemon.get(TAG_NEEDS_RAIN, False):
             self.needs_rain += 1
-        elif new_team_member.get(TAG_HAS_SAND, False):
+        elif chosen_pokemon.get(TAG_HAS_SAND, False):
             self.needs_sand += 1
-        elif new_team_member.get(TAG_HAS_SNOW, False):
+        elif chosen_pokemon.get(TAG_HAS_SNOW, False):
             self.needs_snow += 1
         if role == ROLE_PHYSICAL_THREAT:
             self.physical_threats += 1
@@ -132,11 +135,13 @@ class TeamCoach():
             self.special_threats += 1
         elif role == ROLE_SUPPORT:
             self.supports += 1
-        self.update_weights(new_team_member=new_team_member)
+        self.update_weights(new_team_member=chosen_pokemon)
         
     def update_weights(self,new_team_member:dict|None=None):
-        if self.has_speed_control:
+        if not self.has_speed_control:
             self.tags_weighted[TAG_NEEDS_SPEED_CONTROL] = self.weight_unit * 2
+        else:
+            self.tags_weighted[TAG_NEEDS_SPEED_CONTROL] = self.weight_unit * 0.5
         if self.has_trick_room:
             self.tags_weighted[TAG_NEEDS_TRICK_ROOM] = self.weight_unit * 2
 
@@ -310,14 +315,17 @@ class TeamCoach():
                 
                 print(f'Filtering matches by tags')
                 tag_matches = matches.copy()
+                matched_tags = []
                 for tag in tags:
                     more_tags = list(filter(lambda matched_tag: tag in matched_tag and matched_tag[tag] == True, matches))
                     # if nothing matches the tag filter, ignore this tag and move to the next tag
                     if not more_tags:
                         print(f'no matches found for tag {tag}')
+
                         continue
                     else:
                         tag_matches = more_tags
+                        matched_tags.append(tag)
                 print(f'finished filtering by tags, ended up with {len(tag_matches)} results')
 
                 # TODO: filter by team weaknesses
@@ -331,7 +339,7 @@ class TeamCoach():
 
                 self.chosen_item = self.choose_item(chosen_pokemon=chosen_pokemon, cobblemon_species=cobblemon_species, role_choice=role_choice)
                 
-                chosen_moves: dict = self.choose_moves_for_pokemon(chosen_pokemon=chosen_pokemon, cobblemon_species=cobblemon_species, tags=tags, role_choice=role_choice)
+                chosen_moves: dict = self.choose_moves_for_pokemon(chosen_pokemon=chosen_pokemon, cobblemon_species=cobblemon_species, tags=matched_tags, role_choice=role_choice)
 
                 moves_list = list(chosen_moves.keys())[:4]
 
@@ -412,7 +420,7 @@ class TeamCoach():
                     evs=evs,
                 )
                 team.append(new_member)
-                self.update_tags(chosen_pokemon, role_choice.role)
+                self.update_tags(chosen_pokemon=chosen_pokemon, new_team_member=new_member, role=role_choice.role)
             self.trainer_shell.team = team
             return team
         except Exception as e:
@@ -770,23 +778,8 @@ class TeamCoach():
     def choose_move_from_set(self, move_set: dict, chosen_moves: dict, chosen_pokemon: dict, cobblemon_species: CobblemonSpecies, role_choice: RoleChoice, tags: list):
         weighted_options = {}
         default_weight = 1000
-        # # spread attacks
-        # spread_attacks = {}
-        # # hits partner
-        # hits_partner = {}
-        # # single target
-        # single_target = {}
-        # for move_name, move_description in move_set.items():
-        #     target = move_description.get("target", None)
-        #     if target in SINGLE_TARGET_MOVES:
-        #         single_target[move_name] = move_description
-        #     elif target in HITS_PARTNER_MOVES:
-        #         hits_partner[move_name] = move_description
-        #     elif target in SPREAD_MOVES:
-        #         spread_attacks[move_name] = move_description
-        #     else:
-        #         print(f'unknown move target type: {target} for move {move_name}, ignoring move for attack choice')
-        #         continue
+        attackers_weight_attacks = 6
+        supports_weight_status = 3
 
         pokemon_types = set()
         tags_set = set(tags)
@@ -816,7 +809,7 @@ class TeamCoach():
                 if chosen_type in chosen_types:
                     chosen_types[chosen_type] *= 10
                 else:
-                    chosen_types[chosen_type] = default_weight
+                    chosen_types[chosen_type] = default_weight * 0.5
         
 
         # check every move
@@ -830,8 +823,12 @@ class TeamCoach():
             
             ## doubles staples that need no introduction
             # protect
-            if move_name == 'protect':
-                weighted_options[move_name] = int(default_weight * 10)
+            if move_name in PROTECT_LIKE:
+                # prevent multiple protect-likes
+                overlap = chosen_moves.keys() & PROTECT_LIKE.keys()
+                if len(overlap) > 0:
+                    continue
+                weighted_options[move_name] = int(default_weight * PROTECT_LIKE[move_name])
                 continue
 
             # fake out
@@ -839,14 +836,29 @@ class TeamCoach():
                 weighted_options[move_name] = int(default_weight * 10)
                 continue
 
+            # don't choose unusable moves
+            if move_name in BAD_MOVES_SET:
+                move_score = 1
+                continue
+
             # move data accessing
             move_score = default_weight
-            power = move_description.get("basePower", 0)
+            base_power = move_description.get("basePower", 0)
+            power = base_power
+            multi_hit = move_description.get("multihit", None)
+            if multi_hit:
+                if type(multi_hit) is list:
+                    power *= float(multi_hit[0]+multi_hit[1])/2.0
+                elif type(multi_hit) is int:
+                    power *= multi_hit
+                else:
+                    raise TypeError(f"multi_hit is an incorrect type: {type(multi_hit)}")
             move_type = move_description.get("type", None)
             move_category = move_description.get("category", None)
             # does not include self stat changes or secondary effect changes
             stat_changes = move_description.get("boosts", None)
             flags = move_description.get("flags", {})
+            target = move_description.get("target", None)
 
             # trick room
             if move_name == "trickroom":
@@ -863,15 +875,9 @@ class TeamCoach():
             if move_name == "tailwind":
                 if TAG_HAS_SPEED_CONTROL in tags_set:
                     return move_set[move_name]
-                if self.needs_speed_control > 0:
+                elif self.needs_speed_control > 0:
                     weighted_options[move_name] = int(default_weight * self.needs_speed_control)
                     continue
-                weighted_options[move_name] = int(default_weight * 10)
-                continue
-            # wide guard
-            if move_name == "wideguard":
-                weighted_options[move_name] = int(default_weight * 4)
-                continue   
 
             ## tags
             # tags for THIS pokemon
@@ -884,20 +890,20 @@ class TeamCoach():
 
             ## weather
             # if we have a weather tag and no auto-setting ability, ensure we have a weather setting move
-            if TAG_HAS_SNOW:
+            if TAG_HAS_SNOW in tags:
                 if chosen_ability != 'snowwarning' and move_name in ['snowscape','hail','chillyreception']:
                     move_score *= 10
-            elif TAG_HAS_RAIN:
+            elif TAG_HAS_RAIN in tags:
                 if chosen_ability != 'drizzle' and chosen_ability != 'primordialsea' and move_name == 'raindance':
                     move_score *= 10
                 if move_type == WATER and move_category != STATUS_CATEGORY:
-                    move_score *= 1.5
-            elif TAG_HAS_SUN:
+                    power *= 1.5
+            elif TAG_HAS_SUN in tags:
                 if chosen_ability != 'drought' and chosen_ability != 'desolateland' and chosen_ability != 'orichalcumpulse' and move_name == 'sunnyday':
                     move_score *= 10
                 if move_type == FIRE and move_category != STATUS_CATEGORY:
-                    move_score *= 1.5
-            elif TAG_HAS_SAND:
+                    power *= 1.5
+            elif TAG_HAS_SAND in tags:
                 if chosen_ability != 'sandstream' and move_name == 'sandstorm':
                     move_score *= 10
 
@@ -909,18 +915,48 @@ class TeamCoach():
 
             ## Multipliers (order doesn't matter)
 
-            # weight moves based on power
-            if move_category == STATUS_CATEGORY or power > 0:
-                power_scale = default_weight
-                if role_choice.role != ROLE_SUPPORT:
-                    power_scale = default_weight * 4
+            # weight moves based on accuracy
+            # if the pokemon has no guard or compound eyes, ignore accuracy scaling
+            if chosen_ability != "noguard" and chosen_ability != "compoundeyes":
+                accuracy = move_description.get("accuracy", 100)
+                if accuracy == True:
+                    accuracy = 100
+                if power > 0:
+                    power *= float(accuracy)/100.0
+                else:
+                    move_score *= float(accuracy)/100.0
 
-                power_ratio = score_move_power(power)
-                move_score += power_scale * power_ratio
+            # weight moves based on power
+            if move_category != STATUS_CATEGORY or power > 0:
+                power_scale = 0.5
+                max_power = 80
+                if role_choice.role != ROLE_SUPPORT:
+                    move_score *= attackers_weight_attacks
+                    max_power = 150
+                    
+                # technician
+                if chosen_ability == 'technician' and base_power <= 60:
+                    power *= 1.5
+                
+                
+
+                power_ratio = 1.0
+                low_power_cutoff = 50
+                if power > low_power_cutoff:
+                    power_ratio = score_move_power(value=power, scaling=0.1, max_value=max_power, limit=100)
+                else:
+                    power_ratio = score_move_power(value=power, scaling=7, max_value=low_power_cutoff, limit=low_power_cutoff)
+                move_score *= power_ratio
 
                 # increase weight of priority attacks
                 if move_description.get("priority", 0) > 0:
-                    move_score *= 3
+                    # if slower increase score more
+                    if effective_speed <= LOW_SPEED_CUTOFF:
+                        move_score *= 3
+                    elif effective_speed >= HIGH_SPEED_CUTOFF:
+                        move_score *= 1.25
+                    else:
+                        move_score *= 1.75
 
                 # reduce weight of recoil attacks
                 recoil_values = move_description.get("recoil", [])
@@ -958,20 +994,31 @@ class TeamCoach():
                 
                 # support moves
                 if role_choice.role == ROLE_SUPPORT:
+                    move_score *= supports_weight_status
+                    if move_name in SPEED_CONTROL_MOVES:
+                        for chosen_move in chosen_moves:
+                            # if we already have a speed control move, reduce further speed control
+                            if chosen_move in SPEED_CONTROL_MOVES:
+                                move_score *= 0.1
+                        move_score *= SPEED_CONTROL_MOVES[move_name]
                     # stat changes
                     if stat_changes:
-                        # reduce benefit of slow pokemon
-                        if effective_speed <= HIGH_SPEED_CUTOFF:
-                            move_score *= 0.25
+                        # ignore self-boosting moves
+                        if target == 'self':
+                            move_score *= 0.1
+                        else:
+                            # reduce benefit of slow pokemon
+                            if effective_speed <= HIGH_SPEED_CUTOFF:
+                                move_score *= 0.25
 
-                        move_score *= abs(stat_changes.get("atk", 1))
-                        move_score *= abs(stat_changes.get("spa", 1))
-                        move_score *= abs(stat_changes.get("def", 1))
-                        move_score *= abs(stat_changes.get("spd", 1))
-                        move_score *= abs(stat_changes.get("spe", 0))
-                        # score speed changes much higher
-                        if "spd" in move_score:
-                            move_score *= 4
+                            move_score *= abs(stat_changes.get("atk", 1))
+                            move_score *= abs(stat_changes.get("spa", 1))
+                            move_score *= abs(stat_changes.get("def", 1))
+                            move_score *= abs(stat_changes.get("spd", 1))
+                            move_score *= abs(stat_changes.get("spe", 0))
+                            # score speed changes much higher
+                            if "spd" in stat_changes:
+                                move_score *= 4
                             
                     # healing moves
                     if flags and 'heal' in flags:
@@ -980,14 +1027,21 @@ class TeamCoach():
                     status = move_description.get("status", None)
                     if status:
                         move_score *= STATUS_VALUE_MULTIPLIERS.get(status, 1)
+                # weighting for attackers non-attacking moves
+                else:
+                    if stat_changes and (target == 'self' or target == 'allies'):
+                        for stat_changed, change_value in stat_changes.items():
+                            if stat_changed == 'atk' and role_choice.role == ROLE_PHYSICAL_THREAT:
+                                move_score *= 1 + (abs(change_value) * 0.75)
+                            elif stat_changed == 'spa' and role_choice.role == ROLE_SPECIAL_THREAT:
+                                move_score *= 1 + (abs(change_value) * 0.75)
+                            elif stat_changed != 'atk' and stat_changed != 'spa':
+                                move_score *= 1 + (abs(change_value) * 0.1)
+                    else:
+                        move_score *= 1/attackers_weight_attacks
+
             else:
                 print(f'found type of move outside of normal catgories: {move_category} with power: {power}')
-
-            
-            
-            
-            if role_choice.role != ROLE_SUPPORT and move_category == STATUS_CATEGORY:
-                move_score *= 0.25
 
             # flags weighting
             for flag, value in flags.items():
@@ -998,10 +1052,9 @@ class TeamCoach():
                 elif flag == "charge":
                     move_score *= 0.1
 
-            target = move_description.get("target", None)
             # weight spread moves
             if target in SPREAD_MOVES:
-                move_score *= 2
+                move_score *= 1.5 # x2 for spread, reduced by 25% in doubles
             # weight moves that hit partner pokemon
             elif target in HITS_PARTNER_MOVES:
                 move_score *= 0.75
@@ -1012,14 +1065,7 @@ class TeamCoach():
             #     continue
 
 
-            # weight moves based on accuracy
-            # if the pokemon has no guard or compound eyes, ignore accuracy scaling
-            if chosen_ability != "noguard" and chosen_ability != "compoundeyes":
-                accuracy = move_description.get("accuracy", 100)
-                if accuracy < 80:
-                    move_score = 1
-                else:
-                    move_score *= float(accuracy)/100
+            
                 
             
             # weight moves based on secondary effects
@@ -1038,18 +1084,20 @@ class TeamCoach():
                 self_effect_chance = move_description.get("secondary_effect", {}).get("self", {}).get("chance", 100)
             stat_value = 1.0
             cumulative_effect = 1.0
-            for key, value in self_effect.items():
-                if value > 0:
-                    # good effect
-                    cumulative_effect *= 1.5 * (float(self_effect_chance) / 100.0) * float(abs(value))
-                else:
-                    # bad effect
-                    cumulative_effect *= 0.875 * (100.0/float(self_effect_chance)) * float(abs(value))
-            move_score *= cumulative_effect
+            if self_effect:
+                for key, value in self_effect.items():
+                    if value > 0:
+                        # good effect
+                        cumulative_effect *= 1.5 ** (float(self_effect_chance) / 100.0) * float(abs(value ))
+                    else:
+                        # bad effect
+                        # TODO this is too punishing
+                        cumulative_effect *= 0.95 ** (float(self_effect_chance) / 100.0) * float(abs(value ))
+                move_score *= cumulative_effect
             
             # switching/swapping moves
             if move_description.get("selfSwitch", None):
-                move_score *= 3
+                move_score *= 2
 
             # specific move weighting by name
             if move_name in MOVES_WEIGHT_BY_NAME:
@@ -1063,15 +1111,8 @@ class TeamCoach():
                 if move_type and move_type in chosen_types:
                     # subtract value from chosen type dict from score
                     move_score = max(1, move_score - chosen_types[move_type])
-                # old version
-                # if move_type:
-                #     for existing_move_name, existing_move_description in chosen_moves.items():
-                #         if existing_move_description.get("type", None) == move_type:
-                #             move_score *= 0.25
 
-            # don't choose unusable moves
-            if move_name in BAD_MOVES_SET:
-                move_score = 1
+
             
             # greatly reduce wrong category of moves
             if role_choice.role == ROLE_PHYSICAL_THREAT and move_category == SPECIAL_CATEGORY and role_choice.level > 25:
@@ -1079,15 +1120,21 @@ class TeamCoach():
             elif role_choice.role == ROLE_SPECIAL_THREAT and move_category == PHYSICAL_CATEGORY and role_choice.level > 25:
                 move_score = 1     
                 
-
+            
             weighted_options[move_name] = max(int(move_score), 1)
 
         if len(weighted_options) == 0:
             print(f"failed to choose move")
             return None
 
+        population = []
+        weights = []
+        for name, weight in weighted_options.items():
+            population.append(name)
+            weights.append(weight)
+
         # choose from weighted options
-        chosen_move_name = random.choices(population=list(weighted_options.keys()), weights=list(weighted_options.values()))[0]
+        chosen_move_name = random.choices(population=population, weights=weights)[0]
         return move_set[chosen_move_name]  
 
 

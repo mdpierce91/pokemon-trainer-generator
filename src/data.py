@@ -294,8 +294,11 @@ def get_defenses_score(base_stats: BaseStats):
     return (base_stats.hp * base_stats.defence) + (base_stats.hp * base_stats.special_defence)
 
 # score the value of a moves power scaled exponentially with a cap of power at max_value, 
-# the default max_value is set to the power of boosted facade
+# the default max_value is set 140
 # returns a value between 0-1
 # any value over max_value is capped at 1.0
-def score_move_power(value, max_value=140):
-    return min(1.0, max(0.01, 0.01 + 0.99 * (value / max_value) ** 1.5))
+def score_move_power(value, max_value=140, scaling=0.5, limit=100):
+    limit_ratio = float(limit/100)
+    min_result = limit_ratio*0.01
+    max_result = limit_ratio*0.99
+    return min(1.0, max(min_result, min_result +  max_result * (value / max_value) ** scaling))
