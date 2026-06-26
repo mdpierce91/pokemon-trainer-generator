@@ -51,7 +51,28 @@ MOVES_WEIGHT_BY_NAME: dict[str,float] = {
     'helpinghand': 2,
     'wideguard': 2,
     'healbell': 0.05,
-
+    'aromatherapy': 0.05,
+    'refresh': 0.05,
+    'aromatherapy': 0.05,
+    'recover': 0.25,
+    'roost': 0.25,
+    'slackoff': 0.25,
+    'softboiled': 0.25,
+    'milkdrink': 0.25,
+    'healorder': 0.25,
+    'shoreup': 0.25,
+    'moonlight': 0.05,
+    'morningsun': 0.05,
+    'synthesis': 0.05,
+    'wish': 0.05,
+    'lifedew': 1,
+    'healpulse': 1,
+    'floralhealing': 1,
+    'strengthsap': 1,
+    'leechseed': 0.75,
+    'defog': 0.5,
+    'substitute': 0.5,
+    
 }
 
 PROTECT_LIKE = {
@@ -87,8 +108,12 @@ BAD_MOVES_SET = {
     "batonpass",
     "stealthrock",
     "spikes",
+    'aquaring',
+    'ingrain',
+    'painsplit',
 
     # bad moves
+    'purify',
     "psywave",
     "growl",
     "leer",
@@ -229,8 +254,8 @@ BAD_MOVES_SET = {
     # "round",
     "safeguard",
     "snatch",
-    # "stockpile",
-    # "swallow",
+    "stockpile",
+    "swallow",
     # "tailwind",
     "teatime",
     # "tickle",

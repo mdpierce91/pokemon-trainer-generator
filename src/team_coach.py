@@ -937,8 +937,7 @@ class TeamCoach():
                 # technician
                 if chosen_ability == 'technician' and base_power <= 60:
                     power *= 1.5
-                
-                
+
 
                 power_ratio = 1.0
                 low_power_cutoff = 50
@@ -947,6 +946,14 @@ class TeamCoach():
                 else:
                     power_ratio = score_move_power(value=power, scaling=7, max_value=low_power_cutoff, limit=low_power_cutoff)
                 move_score *= power_ratio
+
+                # decrease priority of normal type attacking moves unless ability boosts(and usually changes type) 
+                # them specifically 
+                if chosen_ability in NORMAL_BOOSTING_ABILITIES:
+                    move_score *= NORMAL_BOOSTING_ABILITIES[chosen_ability]
+                elif move_type == NORMAL:
+                    move_score *= 0.5    
+                
 
                 # increase weight of priority attacks
                 if move_description.get("priority", 0) > 0:
@@ -1021,8 +1028,9 @@ class TeamCoach():
                                 move_score *= 4
                             
                     # healing moves
-                    if flags and 'heal' in flags:
-                        move_score *= 1.5
+                    # depreciated, added moves to move weights by name
+                    # if flags and 'heal' in flags:
+                    #     move_score *= 1.25
 
                     status = move_description.get("status", None)
                     if status:
@@ -1126,17 +1134,30 @@ class TeamCoach():
         if len(weighted_options) == 0:
             print(f"failed to choose move")
             return None
+        
+        population, weights = self.split_population_and_weights(weighted_options=weighted_options, cutoff=(default_weight * 0.25))
 
-        population = []
-        weights = []
-        for name, weight in weighted_options.items():
-            population.append(name)
-            weights.append(weight)
+        # if we don't get enough options, try again with a cutoff of 2
+        if len(population) < 4:
+            population, weights = self.split_population_and_weights(weighted_options=weighted_options, cutoff=2)
+            if len(population) < 4:
+                population, weights = self.split_population_and_weights(weighted_options=weighted_options)
+
+
 
         # choose from weighted options
         chosen_move_name = random.choices(population=population, weights=weights)[0]
         return move_set[chosen_move_name]  
 
+    def split_population_and_weights(self, weighted_options: dict, cutoff=None) -> tuple[list[str], list[int]]:
+        population = []
+        weights = []
+        for name, weight in weighted_options.items():
+            if cutoff and weight < cutoff:
+                continue
+            population.append(name)
+            weights.append(weight)
+        return population, weights
 
     def remove_megas(self, matches: list):
         """Removes mega forms from the list of matches.

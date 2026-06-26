@@ -554,4 +554,10 @@ NO_STATUS_ITEMS = {
 HIGH_SPEED_CUTOFF = 120
 LOW_SPEED_CUTOFF = 80
 
-
+NORMAL_BOOSTING_ABILITIES = {
+    'normalize': 1.2,
+    'pixilate': 1.2,
+    'aerilate': 1.2,
+    'refrigerate': 1.2,
+    'galvanize': 1.2,
+}
