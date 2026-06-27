@@ -113,14 +113,6 @@ class TeamCoach():
         move_set = set()
         if "moveset" in new_team_member:
             move_set = set(new_team_member.moveset)
-        if move_set & RAIN_BOOSTED_MOVES.keys():
-            chosen_pokemon[TAG_NEEDS_RAIN] = True
-        if move_set & SAND_BOOSTED_MOVES.keys():
-            chosen_pokemon[TAG_NEEDS_SAND] = True
-        if move_set & SNOW_BOOSTED_MOVES.keys():
-            chosen_pokemon[TAG_NEEDS_SNOW] = True
-        if move_set & SUN_BOOSTED_MOVES.keys():
-            chosen_pokemon[TAG_NEEDS_SUN] = True
         
         chosen_ability =  strip_ability_name(chosen_pokemon["ability"])
 
@@ -174,33 +166,28 @@ class TeamCoach():
         
     def update_weights(self,new_team_member:dict|None=None):
         if not self.has_speed_control:
-            self.tags_weighted[TAG_NEEDS_SPEED_CONTROL] = self.weight_unit * 2
+            self.tags_weighted[TAG_NEEDS_SPEED_CONTROL] = self.weight_unit * 2 * self.needs_speed_control
         else:
-            self.tags_weighted[TAG_NEEDS_SPEED_CONTROL] = self.weight_unit * 0.5
+            self.tags_weighted[TAG_NEEDS_SPEED_CONTROL] = self.weight_unit * 0.5 * self.needs_speed_control
         if self.has_trick_room:
             self.tags_weighted[TAG_NEEDS_TRICK_ROOM] = self.weight_unit * 2
-
+        self.tags_weighted[TAG_HAS_TRICK_ROOM] = self.weight_unit * self.needs_trick_room
+            
         # weather tags
         if self.has_sun:
-            self.tags_weighted[TAG_NEEDS_SUN] = self.weight_unit * 2
-            self.tags_weighted[TAG_NEEDS_RAIN] = 0
-            self.tags_weighted[TAG_NEEDS_SAND] = 0
-            self.tags_weighted[TAG_NEEDS_SNOW] = 0
-        elif self.has_rain:
-            self.tags_weighted[TAG_NEEDS_SUN] = 0
-            self.tags_weighted[TAG_NEEDS_RAIN] = self.weight_unit * 2
-            self.tags_weighted[TAG_NEEDS_SAND] = 0
-            self.tags_weighted[TAG_NEEDS_SNOW] = 0
-        elif self.has_sand:
-            self.tags_weighted[TAG_NEEDS_SUN] = 0
-            self.tags_weighted[TAG_NEEDS_RAIN] = 0
-            self.tags_weighted[TAG_NEEDS_SAND] = self.weight_unit * 2
-            self.tags_weighted[TAG_NEEDS_SNOW] = 0
-        elif self.has_snow:
-            self.tags_weighted[TAG_NEEDS_SUN] = 0
-            self.tags_weighted[TAG_NEEDS_RAIN] = 0
-            self.tags_weighted[TAG_NEEDS_SAND] = 0
-            self.tags_weighted[TAG_NEEDS_SNOW] = self.weight_unit * 2
+            self.tags_weighted[TAG_NEEDS_SUN] = self.weight_unit
+        if self.has_rain:
+            self.tags_weighted[TAG_NEEDS_RAIN] = self.weight_unit 
+        if self.has_sand:
+            self.tags_weighted[TAG_NEEDS_SAND] = self.weight_unit 
+        if self.has_snow:
+            self.tags_weighted[TAG_NEEDS_SNOW] = self.weight_unit 
+
+        self.tags_weighted[TAG_HAS_SUN] = self.weight_unit * self.needs_sun
+        self.tags_weighted[TAG_HAS_RAIN] = self.weight_unit * self.needs_rain
+        self.tags_weighted[TAG_HAS_SAND] = self.weight_unit * self.needs_sand
+        self.tags_weighted[TAG_HAS_SNOW] = self.weight_unit * self.needs_snow
+
         if self.supports == 0:
             self.tags_weighted[TAG_NEEDS_SUPPORT] = self.weight_unit * 2
         elif self.supports == 1:
@@ -465,7 +452,8 @@ class TeamCoach():
                     evs=evs,
                 )
                 team.append(new_member)
-                
+                # update tags
+                self.update_tags(chosen_pokemon=chosen_pokemon, new_team_member=cobblemon_species, role=role_choice.role)
                 self.database.update_species_choice(species_choice=chosen_pokemon)
             self.trainer_shell.team = team
             return team
@@ -692,8 +680,6 @@ class TeamCoach():
         support_moves_count = 0
         speed_control_moves_count = 0
         while len(chosen_moves) < 4:
-            # update tags
-            self.update_tags(chosen_pokemon=chosen_pokemon, new_team_member=cobblemon_species, role=role_choice.role)
             chosen_move = None
             # only pick attacks if choiced item
             if self.chosen_item in NO_STATUS_ITEMS:
@@ -1199,11 +1185,25 @@ class TeamCoach():
             if len(population) < 4:
                 population, weights = self.split_population_and_weights(weighted_options=weighted_options)
 
-
-
         # choose from weighted options
         chosen_move_name = random.choices(population=population, weights=weights)[0]
+        self.update_tags_from_new_move(chosen_move_name, chosen_pokemon)
         return move_set[chosen_move_name]  
+    
+    def update_tags_from_new_move(self, chosen_move_name: str, chosen_pokemon: dict):
+        if chosen_move_name in RAIN_BOOSTED_MOVES:
+            chosen_pokemon[TAG_NEEDS_RAIN] = True
+        if chosen_move_name in SAND_BOOSTED_MOVES:
+            chosen_pokemon[TAG_NEEDS_SAND] = True
+        if chosen_move_name in SNOW_BOOSTED_MOVES:
+            chosen_pokemon[TAG_NEEDS_SNOW] = True
+        if chosen_move_name in SUN_BOOSTED_MOVES:
+            chosen_pokemon[TAG_NEEDS_SUN] = True
+        if chosen_move_name == 'trickroom':
+            chosen_pokemon[TAG_HAS_TRICK_ROOM] = True
+        if chosen_move_name in SPEED_CONTROL_MOVES:
+            chosen_pokemon[TAG_HAS_SPEED_CONTROL] = True
+            
 
     def split_population_and_weights(self, weighted_options: dict, cutoff=None) -> tuple[list[str], list[int]]:
         population = []

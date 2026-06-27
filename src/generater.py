@@ -37,9 +37,22 @@ def generate_trainer(trainer_shell: CobbleverseTrainer, pokemon_database: Pokemo
 
         # print team to console
         print(f'generated new team for trainer: {trainer_shell.name.literal}')
-        print(f'with tags:')
-        for tag, weight in coach.tags_weighted.items():
-            print(f"  {tag}: {weight}")
+        print(f'  {TAG_HAS_TRICK_ROOM}: {coach.has_trick_room}')
+        print(f'  {TAG_NEEDS_TRICK_ROOM}: {coach.needs_trick_room}')
+        print(f'  {TAG_HAS_SPEED_CONTROL}: {coach.has_speed_control}')
+        print(f'  {TAG_NEEDS_SPEED_CONTROL}: {coach.needs_speed_control}')
+        print(f'  has_mega: {coach.has_mega}')
+        print(f'  {TAG_HAS_SUN}: {coach.has_sun}')
+        print(f'  needs_sun: {coach.needs_sun}')
+        print(f'  {TAG_HAS_RAIN}: {coach.has_rain}')
+        print(f'  needs_rain: {coach.needs_rain}')
+        print(f'  {TAG_HAS_SAND}: {coach.has_sand}')
+        print(f'  needs_sand: {coach.needs_sand}')
+        print(f'  {TAG_HAS_SNOW}: {coach.has_snow}')
+        print(f'  needs_snow: {coach.needs_snow}')
+        print(f'  {TAG_NEEDS_PHYSICAL_THREAT}: {coach.physical_threats}')
+        print(f'  {TAG_NEEDS_SPECIAL_THREAT}: {coach.special_threats}')
+        print(f'  {TAG_NEEDS_SUPPORT}: {coach.supports}')
         for new_member in trainer_shell.team:
             description = f'  lvl:{new_member.level} {new_member.species}'
             if new_member.form is not None:
