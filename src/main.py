@@ -73,8 +73,8 @@ def main():
         print(f'Exception in main')
         print(e)
         print(traceback.format_exc())
+        database.client.close()
         raise e
-        # pokemon_database.client.close()
 
 def get_args() -> argparse.Namespace:
     print("collecting args")
