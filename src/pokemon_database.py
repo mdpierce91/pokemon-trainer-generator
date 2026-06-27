@@ -160,9 +160,11 @@ class PokemonDatabase():
     def find_all_moves_for_pokemon(self, species, form) -> list[dict]:
         return self.find_all_records(self.moves, { "species": species, "form": form })
 
-    def find_all_records(self, collection_name:str, query:dict) -> list:
+    def find_all_records(self, collection_name:str, query:dict, projection=None) -> list:
         collection = self.database[collection_name]
-
+        
+        if projection:
+            return list(collection.find(query, projection))
         return list(collection.find(query))
     
     def update_species_form_items(self, species: str, form:str, required_item:str):
@@ -179,3 +181,10 @@ class PokemonDatabase():
             },
             data=species_choice,
         )
+
+    def get_all_species_choices(self):
+        return self.find_all_records(collection_name=self.species_choice, query={}, projection={
+            'species':1,
+            'form':1,
+            'tier':1,
+        })
