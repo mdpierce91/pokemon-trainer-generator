@@ -34,7 +34,23 @@ class SpeciesChoice(TypedDict):
     steel_effect: float
     fairy_effect: float
     # tags
+    has_rain:bool
+    has_sand:bool
+    has_snow:bool
     has_speed_control:bool
+    has_sun:bool
+    has_trick_room: bool
+    needs_rain: bool
+    needs_sand: bool
+    needs_snow: bool
+    needs_speed_control: bool
+    needs_sun: bool
+    needs_trick_room: bool
+
+    # TODO why are these here?
+    needs_physical_threat: bool
+    needs_special_threat: bool
+    needs_support: bool
 
     # def __init__(self, species, primary_type, ability, secondary_type:str|None = None, form:str=BASE_FORM, defensive_type_chart={}):
     #     self.species = species

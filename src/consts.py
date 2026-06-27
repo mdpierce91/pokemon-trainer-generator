@@ -1,4 +1,7 @@
 
+from moves import RAIN_EFFECTED_MOVES, SAND_EFFECTED_MOVES, SNOW_EFFECTED_MOVES, SUN_EFFECTED_MOVES
+
+
 NORMAL = "normal"
 FIRE = "fire"
 WATER = "water"
@@ -143,44 +146,10 @@ TAG_SET= {
 }
 
 TAG_MOVE_MULTIPLIERS = {
-    TAG_HAS_SNOW: {
-        'aurora veil': 5,
-        'blizzard': 2,
-        'solarbeam': 0.5,
-        'solarblade': 0.5,
-        'moonlight': 0.5,
-        'morningsun': 0.5,
-        'synthesis': 0.5,
-    },
-    TAG_HAS_RAIN: {
-        'aurora veil': 0.001,
-        'hurricane': 1.43,
-        'thunder': 1.25,
-        'bleakwindstorm': 1.25,
-        'solarbeam': 0.5,
-        'solarblade': 0.5,
-        'moonlight': 0.5,
-        'morningsun': 0.5,
-        'synthesis': 0.5,
-    },
-    TAG_HAS_SUN: {
-        'aurora veil': 0.001,
-        'solarbeam': 3,
-        'solarblade': 3,
-        'hurricane': 0.5,
-        'thunder': 0.5,
-    },
-    TAG_HAS_SAND: {
-        'aurora veil': 0.001,
-        'solarbeam': 0.5,
-        'solarblade': 0.5,
-        'moonlight': 0.5,
-        'morningsun': 0.5,
-        'synthesis': 0.5,
-        'shore up': 1.5,
-
-    }
-
+    TAG_HAS_SNOW: SNOW_EFFECTED_MOVES,
+    TAG_HAS_RAIN: RAIN_EFFECTED_MOVES,
+    TAG_HAS_SUN: SUN_EFFECTED_MOVES,
+    TAG_HAS_SAND: SAND_EFFECTED_MOVES,
 }
 
 
@@ -555,10 +524,19 @@ NO_STATUS_ITEMS = {
 HIGH_SPEED_CUTOFF = 120
 LOW_SPEED_CUTOFF = 80
 
-NORMAL_BOOSTING_ABILITIES = {
-    'normalize': 1.2,
-    'pixilate': 1.2,
-    'aerilate': 1.2,
-    'refrigerate': 1.2,
-    'galvanize': 1.2,
+RAIN_SETTING_ABILITIES = {
+    'drizzle',
+    'primordialsea',
+}
+SUN_SETTING_ABILITIES = {
+    'drought',
+    'desolateland',
+    'orichalcumpulse',
+}
+SNOW_SETTING_ABILITIES = {
+    'snowwarning',
+}
+SAND_SETTING_ABILITIES = {
+    'sandstream',
+    'sandspit',
 }

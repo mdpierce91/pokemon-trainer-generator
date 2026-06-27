@@ -37,12 +37,14 @@ def generate_trainer(trainer_shell: CobbleverseTrainer, pokemon_database: Pokemo
 
         # print team to console
         print(f'generated new team for trainer: {trainer_shell.name.literal}')
+        print(f'with tags:')
+        for tag, weight in coach.tags_weighted.items():
+            print(f"  {tag}: {weight}")
         for new_member in trainer_shell.team:
             description = f'  lvl:{new_member.level} {new_member.species}'
             if new_member.form is not None:
                 description += f'-{new_member.form}'
             print(description)
-
         return trainer_shell
 
 

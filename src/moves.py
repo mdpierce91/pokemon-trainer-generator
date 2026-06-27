@@ -35,6 +35,60 @@ SPEED_CONTROL_MOVES = {
     "nuzzle": 1.25,
     "glare": 1.75,
 }
+# weather ball is excluded as it is boosted by all
+SNOW_BOOSTED_MOVES = {
+    'aurora veil': 5,
+    'blizzard': 2,
+}
+SNOW_EFFECTED_MOVES = {
+    **SNOW_BOOSTED_MOVES,
+    'solarbeam': 0.5,
+    'solarblade': 0.5,
+    'moonlight': 0.5,
+    'morningsun': 0.5,
+    'synthesis': 0.5,
+}
+RAIN_BOOSTED_MOVES = {
+    'thunder': 1.25,
+    'hurricane': 1.43,
+    'bleakwindstorm': 1.25,
+    'springtidestorm': 1.25,
+    'wildboltstorm': 1.25,
+    'sandsearstorm': 1.25,
+}
+RAIN_EFFECTED_MOVES = {
+    **RAIN_BOOSTED_MOVES,
+    'aurora veil': 0.001,
+    'solarbeam': 0.5,
+    'solarblade': 0.5,
+    'moonlight': 0.5,
+    'morningsun': 0.5,
+    'synthesis': 0.5,
+}
+SUN_BOOSTED_MOVES = {
+    'solarbeam': 3,
+    'solarblade': 3,
+}
+SUN_EFFECTED_MOVES = {
+    **SUN_BOOSTED_MOVES,
+    'aurora veil': 0.001,
+    'hurricane': 0.5,
+    'thunder': 0.5,
+}
+SAND_BOOSTED_MOVES = {
+    'shore up': 1.5,
+}
+SAND_EFFECTED_MOVES = {
+    **SAND_BOOSTED_MOVES,
+    'aurora veil': 0.001,
+    'solarbeam': 0.5,
+    'solarblade': 0.5,
+    'moonlight': 0.5,
+    'morningsun': 0.5,
+    'synthesis': 0.5,
+}
+
+SNOW_SETTING_MOVES = {'snowscape','hail','chillyreception'}
 
 # move target types
 SINGLE_TARGET_MOVES = {"normal", "any", "adjacentallyorself",}
@@ -72,6 +126,7 @@ MOVES_WEIGHT_BY_NAME: dict[str,float] = {
     'leechseed': 0.75,
     'defog': 0.5,
     'substitute': 0.5,
+    'outrage': 0.5,
     
 }
 

@@ -168,3 +168,14 @@ class PokemonDatabase():
     def update_species_form_items(self, species: str, form:str, required_item:str):
         print(f'inserting required item {required_item} into {species}-{form}')
         return self.insert_json_record(collection_name=self.species_choice, key={ "species": species, "form": form }, data={ "required_item": required_item})
+
+    def update_species_choice(self, species_choice: SpeciesChoice):
+        return self.insert_json_record(
+            collection_name=self.species_choice,
+            key= { 
+                "species": species_choice["species"],
+                "form": species_choice["form"],
+                "role": species_choice["role"],
+            },
+            data=species_choice,
+        )

@@ -144,6 +144,13 @@ def create_from_cobblemon_species(database: PokemonDatabase, species_choice: Spe
         )
         result.append(species_choice_with_ability)
     return result
+    
+def extract_move_info(move:str):
+    move_components = move.split(":")
+    move_name = move_components[-1]
+    move_header = move_components[0] if len(move_components) > 1 else None
+    min_level = int(move_components[0]) if move_header and move_header.isdigit() else 0
+    return min_level, move_header, move_name
 
 def process_pokemon_data_for_database(data: dict):
     name_key = 'name'
@@ -302,3 +309,13 @@ def score_move_power(value, max_value=140, scaling=0.5, limit=100):
     min_result = limit_ratio*0.01
     max_result = limit_ratio*0.99
     return min(1.0, max(min_result, min_result +  max_result * (value / max_value) ** scaling))
+
+def filter_legacy_moves(moves):
+    return list(filter(lambda sus_move: not sus_move["move"].startswith("legacy:"), moves))
+
+def strip_ability_name(ability: str):
+    stripped_ability = ability.replace("h:", '')
+    return stripped_ability
+
+def compare_abilities(compare_string: str, ability: str,):
+    return format_ability_name(ability) == compare_string

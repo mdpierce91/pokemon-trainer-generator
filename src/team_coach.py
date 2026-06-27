@@ -3,12 +3,13 @@
 import random
 import traceback
 
+from abilities import check_type_changing_moves
 from models.cobblemon_form import CobblemonSpecies
 from models.cobbleverse_trainer import CobbleverseTrainer, TeamMember
 from consts import *
-from data import get_defenses_score, score_move_power
+from data import extract_move_info, filter_legacy_moves, get_defenses_score, score_move_power, strip_ability_name
 from models.species_choice import SpeciesChoice
-from moves import BAD_MOVES_SET, HITS_PARTNER_MOVES, MOVES_WEIGHT_BY_NAME, PROTECT_LIKE, SINGLE_TARGET_MOVES, SPEED_CONTROL_MOVES, SPREAD_MOVES, STATUS_VALUE_MULTIPLIERS
+from moves import BAD_MOVES_SET, HITS_PARTNER_MOVES, MOVES_WEIGHT_BY_NAME, PROTECT_LIKE, RAIN_BOOSTED_MOVES, SAND_BOOSTED_MOVES, SINGLE_TARGET_MOVES, SNOW_BOOSTED_MOVES, SNOW_SETTING_MOVES, SPEED_CONTROL_MOVES, SPREAD_MOVES, STATUS_VALUE_MULTIPLIERS, SUN_BOOSTED_MOVES
 from pokemon_database import PokemonDatabase
 from models.role_choice import RoleChoice
 from special_species import SpecialSpecies
@@ -107,34 +108,68 @@ class TeamCoach():
         if not type_lock and trainer_shell.identity:
             type_lock = get_type_lock(trainer_shell.identity)
         return type_lock
-
+    
     def update_tags(self, chosen_pokemon: SpeciesChoice, new_team_member: TeamMember, role:str):
+        move_set = set()
+        if "moveset" in new_team_member:
+            move_set = set(new_team_member.moveset)
+        if move_set & RAIN_BOOSTED_MOVES.keys():
+            chosen_pokemon[TAG_NEEDS_RAIN] = True
+        if move_set & SAND_BOOSTED_MOVES.keys():
+            chosen_pokemon[TAG_NEEDS_SAND] = True
+        if move_set & SNOW_BOOSTED_MOVES.keys():
+            chosen_pokemon[TAG_NEEDS_SNOW] = True
+        if move_set & SUN_BOOSTED_MOVES.keys():
+            chosen_pokemon[TAG_NEEDS_SUN] = True
         
+        chosen_ability =  strip_ability_name(chosen_pokemon["ability"])
+
+
         # if a mega form is added, update coach.has_mega
         if 'mega' in chosen_pokemon.get('form', BASE_FORM):
             self.has_mega = True
         # if new member has speed control update has speed control
-        if not self.has_speed_control and len(list(set(new_team_member.moveset) & set(SPEED_CONTROL_MOVES.keys()))) > 0:
+        if len(move_set & set(SPEED_CONTROL_MOVES.keys())) > 0:
             self.has_speed_control = True
-        self.has_rain = self.has_rain or chosen_pokemon.get(TAG_HAS_RAIN, False)
-        self.has_sand = self.has_sand or chosen_pokemon.get(TAG_HAS_SAND, False)
-        self.has_snow = self.has_snow or chosen_pokemon.get(TAG_HAS_SNOW, False)
-        self.has_sun = self.has_sun or chosen_pokemon.get(TAG_HAS_SUN, False)
-        self.has_trick_room = self.has_trick_room or chosen_pokemon.get(TAG_HAS_TRICK_ROOM, False)
+            chosen_pokemon[TAG_HAS_SPEED_CONTROL] = True
+
+        if 'raindance' in move_set or chosen_ability in RAIN_SETTING_ABILITIES:
+            self.has_rain = True
+            chosen_pokemon[TAG_HAS_RAIN] = True
+        if chosen_pokemon.get(TAG_NEEDS_RAIN, False):
+            self.needs_rain += 1
+    
+        if 'sandstorm' in move_set or chosen_ability in SAND_SETTING_ABILITIES:
+            self.has_sand = True
+            chosen_pokemon[TAG_HAS_SAND] = True
+        if chosen_pokemon.get(TAG_NEEDS_SAND, False):
+            self.needs_sand += 1
+
+        if len(move_set & SNOW_SETTING_MOVES) > 0 or chosen_ability in SNOW_SETTING_ABILITIES:
+            self.has_snow = True
+            chosen_pokemon[TAG_HAS_SNOW] = True
+        if chosen_pokemon.get(TAG_NEEDS_SNOW, False):
+            self.needs_snow += 1
+        
+        if 'sunnyday' in move_set or chosen_ability in SUN_SETTING_ABILITIES:
+            self.has_sun = True
+            chosen_pokemon[TAG_HAS_SUN] = True
         if chosen_pokemon.get(TAG_NEEDS_SUN, False):
             self.needs_sun += 1
-        elif chosen_pokemon.get(TAG_NEEDS_RAIN, False):
-            self.needs_rain += 1
-        elif chosen_pokemon.get(TAG_HAS_SAND, False):
-            self.needs_sand += 1
-        elif chosen_pokemon.get(TAG_HAS_SNOW, False):
-            self.needs_snow += 1
+
+        if 'trickroom' in move_set:
+            self.has_trick_room = True
+            chosen_pokemon[TAG_HAS_TRICK_ROOM] = True
+        if chosen_pokemon.get(TAG_NEEDS_TRICK_ROOM, False):
+            self.needs_trick_room += 1
+        
         if role == ROLE_PHYSICAL_THREAT:
             self.physical_threats += 1
         elif role == ROLE_SPECIAL_THREAT:
             self.special_threats += 1
         elif role == ROLE_SUPPORT:
             self.supports += 1
+
         self.update_weights(new_team_member=chosen_pokemon)
         
     def update_weights(self,new_team_member:dict|None=None):
@@ -189,7 +224,11 @@ class TeamCoach():
         
     def update_weaknesses(self, new_team_member: SpeciesChoice):
         try:
-            defensive_type_chart = get_defensive_chart(type1=new_team_member["primary_type"], type2=new_team_member["secondary_type"], ability=new_team_member["ability"])
+            defensive_type_chart = get_defensive_chart(
+                type1=new_team_member["primary_type"], 
+                type2=new_team_member["secondary_type"], 
+                ability=strip_ability_name(new_team_member["ability"])
+            )
             for type,multiplier in defensive_type_chart.items():
                 # neutral, no change
                 if multiplier == 1:
@@ -342,6 +381,12 @@ class TeamCoach():
                 chosen_moves: dict = self.choose_moves_for_pokemon(chosen_pokemon=chosen_pokemon, cobblemon_species=cobblemon_species, tags=matched_tags, role_choice=role_choice)
 
                 moves_list = list(chosen_moves.keys())[:4]
+                
+                speed = cobblemon_species.form_stats(chosen_pokemon.get("form", None)).speed
+                if speed <= LOW_SPEED_CUTOFF:
+                    chosen_pokemon[TAG_NEEDS_TRICK_ROOM] = True
+                elif speed < HIGH_SPEED_CUTOFF:
+                    chosen_pokemon[TAG_NEEDS_SPEED_CONTROL] = True
 
 
 
@@ -420,7 +465,8 @@ class TeamCoach():
                     evs=evs,
                 )
                 team.append(new_member)
-                self.update_tags(chosen_pokemon=chosen_pokemon, new_team_member=new_member, role=role_choice.role)
+                
+                self.database.update_species_choice(species_choice=chosen_pokemon)
             self.trainer_shell.team = team
             return team
         except Exception as e:
@@ -558,6 +604,7 @@ class TeamCoach():
 
     def choose_moves_for_pokemon(self, chosen_pokemon: dict, cobblemon_species: CobblemonSpecies, tags: list, role_choice: RoleChoice)->dict:
         chosen_moves = {}
+        chosen_ability = strip_ability_name(chosen_pokemon['ability'])
         original_item = self.chosen_item
         
         # dicts to hold moves that fit certain tags so we can choose from them to add to the final moveset
@@ -577,13 +624,13 @@ class TeamCoach():
         # get all moves for pokemon
         moves: list[dict] = self.database.find_all_moves_for_pokemon(species=chosen_pokemon['species'], form=query_form)
         # filter out legacy moves
-        legacy_filtered_moves = list(filter(lambda sus_move: not sus_move["move"].startswith("legacy:"), moves))
+        legacy_filtered_moves = filter_legacy_moves(moves)
 
         # try once to use base form moves if we didn't get any moves for chosen form
         if len(legacy_filtered_moves) == 0:
             moves = self.database.find_all_moves_for_pokemon(species=chosen_pokemon['species'], form=BASE_FORM)
             # filter out legacy moves
-            legacy_filtered_moves = list(filter(lambda sus_move: not sus_move["move"].startswith("legacy:"), moves))
+            legacy_filtered_moves = filter_legacy_moves(moves)
 
         # if no moves found, error out
         if len(legacy_filtered_moves) == 0:
@@ -591,11 +638,7 @@ class TeamCoach():
 
         # get a move from tags if applicible
         for move in legacy_filtered_moves:
-            move_components = move["move"].split(":")
-            move_name = move_components[-1]
-            move_header = move_components[0] if len(move_components) > 1 else None
-            min_level = int(move_components[0]) if move_header and move_header.isdigit() else 0
-
+            min_level, move_header, move_name = extract_move_info(move.get('move', None))
 
             # skip moves that have a minimum level requirement higher than the pokemon's level
             if min_level > role_choice.level:
@@ -623,16 +666,16 @@ class TeamCoach():
                 # TODO: has tailwind
                 speed_control_moves[move_name] = move_description
             elif move_name == "sandstorm":
-                if TAG_HAS_SAND in tags and chosen_pokemon['ability'] != "sandstream":
+                if TAG_HAS_SAND in tags and chosen_ability != "sandstream":
                     chosen_moves[move_name] = move_description
             elif move_name == "raindance":
-                if TAG_HAS_RAIN in tags and chosen_pokemon['ability'] != "drizzle":
+                if TAG_HAS_RAIN in tags and chosen_ability != "drizzle":
                     chosen_moves[move_name] = move_description
             elif move_name == "sunnyday":
-                if TAG_HAS_SUN in tags and chosen_pokemon['ability'] != "drought":
+                if TAG_HAS_SUN in tags and chosen_ability != "drought":
                     chosen_moves[move_name] = move_description
             elif move_name == "snowscape":
-                if TAG_HAS_SNOW in tags and chosen_pokemon['ability'] != "snowwarning":
+                if TAG_HAS_SNOW in tags and chosen_ability != "snowwarning":
                     chosen_moves[move_name] = move_description
             
             move_power = move_description.get("basePower", 0)
@@ -649,6 +692,8 @@ class TeamCoach():
         support_moves_count = 0
         speed_control_moves_count = 0
         while len(chosen_moves) < 4:
+            # update tags
+            self.update_tags(chosen_pokemon=chosen_pokemon, new_team_member=cobblemon_species, role=role_choice.role)
             chosen_move = None
             # only pick attacks if choiced item
             if self.chosen_item in NO_STATUS_ITEMS:
@@ -788,7 +833,7 @@ class TeamCoach():
         secondary_type = chosen_pokemon.get("secondary_type", None)
         pokemon_types.add(primary_type)
         pokemon_types.add(secondary_type)
-        chosen_ability = chosen_pokemon.get('ability', None)
+        chosen_ability = strip_ability_name(chosen_pokemon.get('ability', None))
 
         form_base_stats = cobblemon_species.form_stats(chosen_pokemon.get("form", None))
         atk_stat = float(form_base_stats.attack)
@@ -860,6 +905,8 @@ class TeamCoach():
             stat_changes = move_description.get("boosts", None)
             flags = move_description.get("flags", {})
             target = move_description.get("target", None)
+            # change type and base power if pokemon has type changing move ie. pixilate
+            move_type, base_power = check_type_changing_moves(chosen_ability, move_type, base_power)
 
             # trick room
             if move_name == "trickroom":
@@ -892,20 +939,20 @@ class TeamCoach():
             ## weather
             # if we have a weather tag and no auto-setting ability, ensure we have a weather setting move
             if TAG_HAS_SNOW in tags:
-                if chosen_ability != 'snowwarning' and move_name in ['snowscape','hail','chillyreception']:
+                if chosen_ability not in SNOW_SETTING_ABILITIES and move_name in SNOW_SETTING_MOVES:
                     move_score *= 10
             elif TAG_HAS_RAIN in tags:
-                if chosen_ability != 'drizzle' and chosen_ability != 'primordialsea' and move_name == 'raindance':
+                if chosen_ability not in RAIN_SETTING_ABILITIES and move_name == 'raindance':
                     move_score *= 10
                 if move_type == WATER and move_category != STATUS_CATEGORY:
                     power *= 1.5
             elif TAG_HAS_SUN in tags:
-                if chosen_ability != 'drought' and chosen_ability != 'desolateland' and chosen_ability != 'orichalcumpulse' and move_name == 'sunnyday':
+                if chosen_ability not in SUN_SETTING_ABILITIES and move_name == 'sunnyday':
                     move_score *= 10
                 if move_type == FIRE and move_category != STATUS_CATEGORY:
                     power *= 1.5
             elif TAG_HAS_SAND in tags:
-                if chosen_ability != 'sandstream' and move_name == 'sandstorm':
+                if chosen_ability not in SAND_SETTING_ABILITIES and move_name == 'sandstorm':
                     move_score *= 10
 
             # TODO weather ball
@@ -948,12 +995,9 @@ class TeamCoach():
                     power_ratio = score_move_power(value=power, scaling=7, max_value=low_power_cutoff, limit=low_power_cutoff)
                 move_score *= power_ratio
 
-                # decrease priority of normal type attacking moves unless ability boosts(and usually changes type) 
-                # them specifically 
-                if chosen_ability in NORMAL_BOOSTING_ABILITIES:
-                    move_score *= NORMAL_BOOSTING_ABILITIES[chosen_ability]
-                elif move_type == NORMAL:
-                    move_score *= 0.5    
+                # decrease score of normal type attacking moves
+                if move_type == NORMAL:
+                    move_score *= 0.8
 
                 # if pokemon is holding a type boosting move, increase the weight of that type of move
                 if self.chosen_item in inverted_type_boosting_items and inverted_type_boosting_items[self.chosen_item] == move_type:
@@ -988,7 +1032,12 @@ class TeamCoach():
                 
                 # increase weight of stab attacks
                 if move_type in pokemon_types:
-                    move_score *= 1.5
+                    if chosen_ability == 'adaptability':
+                        move_score *= 2
+                    elif chosen_ability == 'tintedlens':
+                        move_score *= 2
+                    else:
+                        move_score *= 1.5
                 
                 # if mixed or support ratio by pref stat
                 if move_category == PHYSICAL_CATEGORY:
@@ -1002,6 +1051,9 @@ class TeamCoach():
                     move_score *= 0.25
     
             elif move_category == STATUS_CATEGORY or power == 0:
+                # increase value of status moves with prankster
+                if chosen_ability == 'prankster':
+                    move_score *= 1.5
                 
                 # support moves
                 if role_choice.role == ROLE_SUPPORT:

@@ -22,9 +22,9 @@ def open_all_trainer_json_files(only_gym_leaders=False, limit = None, search_key
                     break
                 filename = os.fsdecode(file)
                 if filename.endswith(".json"): 
-                    print(f'filename{filename}')
+                    # print(f'filename{filename}')
                     full_path = os.path.join(dirname, directory_path, filename)
-                    print(f'full path: {full_path}')
+                    # print(f'full path: {full_path}')
                     with open(full_path, 'r') as json_data:
                         trainer_data = CobbleverseTrainer.model_validate_json(json_data.read())
                         trainer = CobbleverseTrainerFile(filename=filename, data=trainer_data)
@@ -37,7 +37,7 @@ def open_all_trainer_json_files(only_gym_leaders=False, limit = None, search_key
                             type_lock = get_type_lock(trainer.data.identity)
                         if type_lock:
                             type_locked_trainers.append(trainer)
-                        print(f'trainer added to list')
+                        # print(f'trainer added to list')
                     count += 1
             except Exception as e:
                 print(f'Failed to open trainer file {filename}')

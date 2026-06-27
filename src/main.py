@@ -84,7 +84,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument('--clean_database', action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--generate_trainers', action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--only_gym_leaders', action=argparse.BooleanOptionalAction, default=False)
-    parser.add_argument('--search_trainer', default=None)
+    parser.add_argument('--search_trainer', default=None)    
     
     args = parser.parse_args()
     return args
@@ -115,7 +115,6 @@ def write_species_collection(database: PokemonDatabase,update=False):
     for single_pokemon in imported_pokemon:
         processed_pokemon = process_cobblemon_data_for_database(single_pokemon)
         write_to_db_from_cobblemon_files(database, processed_pokemon,update=update)
-
 
 def write_cobblemon_collection(database: PokemonDatabase):
     imported_pokemon = import_all_pokemon(validation=False)
